@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">proyecto_falomir_herrero_miguel</string>
+    <string name="User_name">Suzanne</string>
+    <string name="User_surnames">Garrido Nemesio</string>
+    <string name="User_email">suzieGN@email.blend</string>
+    <string name="User_phone">(+34) 555 123 456</string>
+    <string name="image_4">Glow</string>
+    <string name="image_5">Suzanne</string>
 </resources>
