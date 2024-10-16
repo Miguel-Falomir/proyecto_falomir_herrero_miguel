@@ -5,6 +5,6 @@ import androidx.annotation.StringRes
 class Car(
     modelId: Int,
     brandId: Int,
-    hasGPS: Boolean,
+    hasGPS: Int,
     @StringRes val fuelId: Int
 ) : Vehicle(modelId, brandId, hasGPS)

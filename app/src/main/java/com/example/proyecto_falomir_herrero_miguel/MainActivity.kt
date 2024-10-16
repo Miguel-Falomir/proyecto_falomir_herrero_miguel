@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaInicio
+import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaListaPedidos
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Arranque(modifier: Modifier = Modifier) {
-    PantallaInicio(modifier)
+    PantallaListaPedidos(modifier)
 }
 
 @Preview(showBackground = true)

@@ -1,9 +1,31 @@
 <resources>
     <string name="app_name">proyecto_falomir_herrero_miguel</string>
+
+    <!-- USER DATA -->
+
     <string name="User_name">Suzanne</string>
     <string name="User_surnames">Garrido Nemesio</string>
     <string name="User_email">suzieGN@email.blend</string>
     <string name="User_phone">(+34) 555 123 456</string>
-    <string name="image_4">Glow</string>
-    <string name="image_5">Suzanne</string>
+
+    <!-- CAR DATA -->
+
+    <string name="car1_brand">Seat</string>
+    <string name="car1_model">Ibiza</string>
+    <string name="car1_hasGPS">false</string>
+    <string name="car1_fuel">Diesel</string>
+
+    <!-- BIKE DATA -->
+
+    <string name="bike1_brand">Vespa</string>
+    <string name="bike1_model">Vespino</string>
+    <string name="bike1_hasGPS">false</string>
+    <string name="bike1_size">50</string>
+
+    <!-- SCOOTER DATA -->
+
+    <string name="scooter1_brand">Cecotec</string>
+    <string name="scooter1_model">Bongo</string>
+    <string name="scooter1_hasGPS">false</string>
+
 </resources>

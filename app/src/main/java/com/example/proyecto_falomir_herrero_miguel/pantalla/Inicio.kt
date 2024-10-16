@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.data.Data
 import com.example.proyecto_falomir_herrero_miguel.model.User
+import com.example.proyecto_falomir_herrero_miguel.ui.theme.AppTypography
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
@@ -42,6 +44,9 @@ fun PantallaInicio(modifier: Modifier = Modifier){
             color = Color.LightGray,
             modifier = modifier
         )
+        Spacer(
+            modifier = Modifier.weight(1F)
+        )
         Botones(
             modifier = modifier
         )
@@ -52,7 +57,7 @@ fun PantallaInicio(modifier: Modifier = Modifier){
 @Composable
 fun CartaUser(user: User, color: Color, modifier: Modifier = Modifier){
     Card (
-        modifier = modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         shape = RectangleShape,
         colors = CardColors(
             containerColor = color,
@@ -70,15 +75,12 @@ fun Botones(modifier: Modifier = Modifier){
     Column(
         modifier = Modifier.padding(20.dp).fillMaxWidth()
     ){
-        Text(
-            text = "PEDIDOS"
-        )
         Button (
             modifier = Modifier.padding(30.dp).fillMaxWidth().height(80.dp),
             onClick = {}
         ){
             Text(
-                text = "PRESS",
+                text = "ALQUILAR",
                 fontSize = 40.sp
             )
         }
@@ -87,7 +89,7 @@ fun Botones(modifier: Modifier = Modifier){
             onClick = {}
         ){
             Text(
-                text = "PRESS",
+                text = "VER PEDIDOS",
                 fontSize = 40.sp
             )
         }
@@ -97,10 +99,10 @@ fun Botones(modifier: Modifier = Modifier){
 @Composable
 fun DatosUser(user: User, modifier: Modifier = Modifier){
     Column (
-        modifier = Modifier.padding(20.dp)
+        modifier = Modifier.padding(22.dp)
     ){
         Row (
-            modifier = Modifier
+            modifier = Modifier.padding(0.dp, 8.dp)
         ){
             Icon(
                 imageVector = Icons.Default.Person,
@@ -112,7 +114,7 @@ fun DatosUser(user: User, modifier: Modifier = Modifier){
             )
         }
         Row (
-            modifier = Modifier
+            modifier = Modifier.padding(0.dp, 8.dp)
         ){
             Spacer(
                 modifier = Modifier.width(24.dp)
@@ -123,7 +125,7 @@ fun DatosUser(user: User, modifier: Modifier = Modifier){
             )
         }
         Row (
-            modifier = Modifier
+            modifier = Modifier.padding(0.dp, 8.dp)
         ){
             Icon(
                 imageVector = Icons.Default.Email,
@@ -135,7 +137,7 @@ fun DatosUser(user: User, modifier: Modifier = Modifier){
             )
         }
         Row (
-            modifier = Modifier
+            modifier = Modifier.padding(0.dp, 8.dp)
         ){
             Icon(
                 imageVector = Icons.Default.Phone,
@@ -169,7 +171,7 @@ fun DatosUser(user: User, modifier: Modifier = Modifier){
 
 @Preview(showBackground = true)
 @Composable
-fun Preview() {
+fun InicioPreview() {
     AppTheme {
         PantallaInicio()
     }
