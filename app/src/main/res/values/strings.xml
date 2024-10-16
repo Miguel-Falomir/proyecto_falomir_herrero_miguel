@@ -8,6 +8,12 @@
     <string name="User_email">suzieGN@email.blend</string>
     <string name="User_phone">(+34) 555 123 456</string>
 
+    <!-- VEHICLE DATA -->
+
+    <string name="vehicle_type1">Turismo</string>
+    <string name="vehicle_type2">Moto</string>
+    <string name="vehicle_type3">Patinete</string>
+
     <!-- CAR DATA -->
 
     <string name="car1_brand">Seat</string>
@@ -27,5 +33,49 @@
     <string name="scooter1_brand">Cecotec</string>
     <string name="scooter1_model">Bongo</string>
     <string name="scooter1_hasGPS">false</string>
+
+    <!-- RENT DATA -->
+
+    <string name="rent1_date">2024-10-03</string>
+    <string name="rent1_rentDays">2</string>
+    <string name="rent1_price">100.00</string>
+
+    <string name="rent2_date">2024-10-03</string>
+    <string name="rent2_rentDays">2</string>
+    <string name="rent2_price">100.00</string>
+
+    <string name="rent3_date">2024-10-03</string>
+    <string name="rent3_rentDays">2</string>
+    <string name="rent3_price">100.00</string>
+
+    <string name="rent4_date">2024-10-03</string>
+    <string name="rent4_rentDays">2</string>
+    <string name="rent4_price">100.00</string>
+
+    <string name="rent5_date">2024-10-03</string>
+    <string name="rent5_rentDays">2</string>
+    <string name="rent5_price">100.00</string>
+
+    <string name="rent6_date">2024-10-03</string>
+    <string name="rent6_rentDays">2</string>
+    <string name="rent6_price">100.00</string>
+
+    <string name="rent7_date">2024-10-03</string>
+    <string name="rent7_rentDays">2</string>
+    <string name="rent7_price">100.00</string>
+
+    <string name="rent8_date">2024-10-03</string>
+    <string name="rent8_rentDays">2</string>
+    <string name="rent8_price">100.00</string>
+
+    <string name="rent9_date">2024-10-03</string>
+    <string name="rent9_rentDays">2</string>
+    <string name="rent9_price">100.00</string>
+
+    <!-- BUTTONS TITLES -->
+
+    <string name="button_Car">Turismo</string>
+    <string name="button_Bike">Moto</string>
+    <string name="button_Scooter">Patinete</string>
 
 </resources>

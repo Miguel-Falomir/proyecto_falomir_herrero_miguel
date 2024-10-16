@@ -42,6 +42,7 @@ import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.data.Data
 import com.example.proyecto_falomir_herrero_miguel.model.Bike
 import com.example.proyecto_falomir_herrero_miguel.model.Car
+import com.example.proyecto_falomir_herrero_miguel.model.Rent
 import com.example.proyecto_falomir_herrero_miguel.model.Scooter
 import com.example.proyecto_falomir_herrero_miguel.model.Vehicle
 
@@ -49,13 +50,13 @@ import com.example.proyecto_falomir_herrero_miguel.model.Vehicle
 
 @Composable
 fun PantallaListaPedidos(modifier: Modifier = Modifier){
-    ColumnaPedidos( Data().VehicleList(), modifier )
+    ColumnaPedidos( Data().RentList(), modifier )
 }
 
 // METODO COLUMNA PEDIDOS -------------------------------------------
 
 @Composable
-fun ColumnaPedidos (data: List<Vehicle>, modifier: Modifier = Modifier) {
+fun ColumnaPedidos (data: List<Rent>, modifier: Modifier = Modifier) {
     LazyColumn (modifier = modifier) {
         items(data) { token ->
             CartaPedido(token, modifier)
@@ -66,7 +67,7 @@ fun ColumnaPedidos (data: List<Vehicle>, modifier: Modifier = Modifier) {
 // METODO CARTA PEDIDO ----------------------------------------------
 
 @Composable
-fun CartaPedido (token: Vehicle, modifier: Modifier = Modifier) {
+fun CartaPedido (token: Rent, modifier: Modifier = Modifier) {
     // variables internas //
     var binario: Boolean by remember { mutableStateOf( false ) }
 
@@ -89,13 +90,13 @@ fun CartaPedido (token: Vehicle, modifier: Modifier = Modifier) {
             */
             // Imprimir nombre objeto //
             Text(
-                text = stringResource(token.brandId),
+                text = stringResource(token.vehicle.brandId),
                 modifier = Modifier.padding(start = 20.dp),
                 style = MaterialTheme.typography.headlineSmall,
             )
             Text(" ")
             Text(
-                text = stringResource(token.modelId),
+                text = stringResource(token.vehicle.modelId),
                 modifier = Modifier,
                 style = MaterialTheme.typography.headlineSmall,
             )
@@ -109,10 +110,10 @@ fun CartaPedido (token: Vehicle, modifier: Modifier = Modifier) {
             )
         }
         if (binario) {
-            when (token) {
-                is Car -> DetallesCar(token, modifier)
-                is Bike -> DetallesBike(token, modifier)
-                is Scooter -> DetallesScooter(token, modifier)
+            when (token.vehicle) {
+                is Car -> DetallesCar(token, token.vehicle, modifier)
+                is Bike -> DetallesBike(token, token.vehicle, modifier)
+                is Scooter -> DetallesScooter(token, token.vehicle, modifier)
                 else -> Text(text = "error de clase")
             }
         }
@@ -148,7 +149,7 @@ fun IconoExpansible(
 // METODO DETALLES PEDIDO (CAR) -------------------------------------
 
 @Composable
-fun DetallesCar(token: Car, modifier: Modifier = Modifier){
+fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(20.dp)
     ){
@@ -161,7 +162,7 @@ fun DetallesCar(token: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(stringResource(token.hasGPS).equals("true")) {"SI"} else {"NO"}
+                text = if(stringResource(car.hasGPS).equals("true")) {"SI"} else {"NO"}
             )
         }
         // mostrar combustible //
@@ -173,7 +174,49 @@ fun DetallesCar(token: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(token.fuelId)
+                text = stringResource(car.fuelId)
+            )
+        }
+        // mostrar fecha
+        Row (
+            modifier = Modifier
+        ){
+            Text(
+                text = "Fecha"
+            )
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = stringResource(rent.dateId)
+            )
+        }
+        // mostrar dias
+        Row (
+            modifier = Modifier
+        ){
+            Text(
+                text = "Alquiler"
+            )
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = stringResource(rent.rentDaysId)
+            )
+            Text(
+                text = " dias"
+            )
+        }
+        // mostrar precio
+        Row (
+            modifier = Modifier
+        ){
+            Text(
+                text = "Cilindrada"
+            )
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = stringResource(rent.priceId)
+            )
+            Text(
+                text = " €"
             )
         }
     }
@@ -182,7 +225,7 @@ fun DetallesCar(token: Car, modifier: Modifier = Modifier){
 // METODO DETALLES PEDIDO (BIKE) ------------------------------------
 
 @Composable
-fun DetallesBike(token: Bike, modifier: Modifier = Modifier){
+fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(20.dp)
     ){
@@ -195,7 +238,7 @@ fun DetallesBike(token: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(stringResource(token.hasGPS).equals("true")) {"SI"} else {"NO"}
+                text = if(stringResource(bike.hasGPS).equals("true")) {"SI"} else {"NO"}
             )
         }
         // mostrar cilindrada
@@ -207,10 +250,52 @@ fun DetallesBike(token: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(token.sizeId)
+                text = stringResource(bike.sizeId)
             )
             Text(
                 text = " cc"
+            )
+        }
+        // mostrar fecha
+        Row (
+            modifier = Modifier
+        ){
+            Text(
+                text = "Fecha"
+            )
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = stringResource(rent.dateId)
+            )
+        }
+        // mostrar dias
+        Row (
+            modifier = Modifier
+        ){
+            Text(
+                text = "Alquiler"
+            )
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = stringResource(rent.rentDaysId)
+            )
+            Text(
+                text = " dias"
+            )
+        }
+        // mostrar precio
+        Row (
+            modifier = Modifier
+        ){
+            Text(
+                text = "Cilindrada"
+            )
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = stringResource(rent.priceId)
+            )
+            Text(
+                text = " €"
             )
         }
     }
@@ -219,7 +304,7 @@ fun DetallesBike(token: Bike, modifier: Modifier = Modifier){
 // METODO DETALLES PEDIDO (SCOOTER) ---------------------------------
 
 @Composable
-fun DetallesScooter(token: Scooter, modifier: Modifier = Modifier){
+fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(20.dp)
     ){
@@ -232,7 +317,49 @@ fun DetallesScooter(token: Scooter, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(stringResource(token.hasGPS).equals("true")) {"SI"} else {"NO"}
+                text = if(stringResource(scooter.hasGPS).equals("true")) {"SI"} else {"NO"}
+            )
+        }
+        // mostrar fecha
+        Row (
+            modifier = Modifier
+        ){
+            Text(
+                text = "Fecha"
+            )
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = stringResource(rent.dateId)
+            )
+        }
+        // mostrar dias
+        Row (
+            modifier = Modifier
+        ){
+            Text(
+                text = "Alquiler"
+            )
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = stringResource(rent.rentDaysId)
+            )
+            Text(
+                text = " dias"
+            )
+        }
+        // mostrar precio
+        Row (
+            modifier = Modifier
+        ){
+            Text(
+                text = "Cilindrada"
+            )
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = stringResource(rent.priceId)
+            )
+            Text(
+                text = " €"
             )
         }
     }

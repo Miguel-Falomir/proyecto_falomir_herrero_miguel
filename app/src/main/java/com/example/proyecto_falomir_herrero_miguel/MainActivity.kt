@@ -1,4 +1,8 @@
+// PAQUETE ----------------------------------------------------------
+
 package com.example.proyecto_falomir_herrero_miguel
+
+// LIBRERIAS --------------------------------------------------------
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,6 +17,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaInicio
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaListaPedidos
+import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaRealizarPedido
+
+// METODO INICIAR PANTALLA ------------------------------------------
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +37,14 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// METODO ARRANQUE --------------------------------------------------
+
 @Composable
 fun Arranque(modifier: Modifier = Modifier) {
-    PantallaListaPedidos(modifier)
+    PantallaRealizarPedido(modifier)
 }
+
+// PREVIEW ----------------------------------------------------------
 
 @Preview(showBackground = true)
 @Composable
