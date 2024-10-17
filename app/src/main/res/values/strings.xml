@@ -77,5 +77,13 @@
     <string name="button_Car">Turismo</string>
     <string name="button_Bike">Moto</string>
     <string name="button_Scooter">Patinete</string>
+    <string name="Check_Gas">Gasolina</string>
+    <string name="Check_Diesel">Diesel</string>
+    <string name="Check_Electric">Eléctrico</string>
+    <string name="Check_50">50 cc</string>
+    <string name="Check_125">125 cc</string>
+    <string name="Check_250">250 cc</string>
+    <string name="Check_GPS_Y">Sí</string>
+    <string name="Check_GPS_N">No</string>
 
 </resources>
