@@ -42,142 +42,20 @@ import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
 
 @Composable
 fun PantallaRealizarPedido(modifier: Modifier = Modifier){
-    FormularioPedido(modifier = modifier)
+    RealizarPedido(modifier = modifier)
 }
 
 // METODO FORMULARIO PEDIDO -----------------------------------------
 
 @Composable
-fun FormularioPedido(modifier: Modifier = Modifier){
+fun RealizarPedido(modifier: Modifier = Modifier){
     // variables internas //
     var inputFecha by remember { mutableStateOf("1970-01-01") }
     var inputDias by remember { mutableStateOf("0") }
     var inputTipo by remember { mutableStateOf(0) }
     var vehiculo: Vehicle by remember { mutableStateOf( Data().VehicleList()[0] ) }
-    Column (
-        modifier = modifier
-            .padding(40.dp)
-            .fillMaxWidth()
-    ){
-        // datos alquiler //
-        // elegir fecha y dias alquiler //
-        Row (
-            modifier = Modifier.fillMaxWidth().height(200.dp),
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ){
-            Column(
-                modifier = Modifier.width(160.dp)
-            ){
-                Text(
-                    text = "Fecha",
-                    fontFamily = One
-                )
-                OutlinedTextField(
-                    value = inputFecha,
-                    onValueChange = {inputFecha = it}
-                )
-                Spacer(modifier = Modifier.weight(1F))
-                Text(
-                    text = "Dias Alquiler",
-                    fontFamily = One
-                )
-                OutlinedTextField(
-                    value = inputDias,
-                    onValueChange = {inputDias = it},
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
-            }
-            Column (
-                modifier = Modifier.width(160.dp)
-            ){
-                Text(
-                    text = "Vehiculo",
-                    fontFamily = One
-                )
-                OpcionVehiculo(
-                    opcion = inputTipo,
-                    num = 0,
-                    onClick = { inputTipo = 0 },
-                    texto = R.string.vehicle_type1,
-                    modifier = Modifier
-                )
-                Spacer(modifier = Modifier.weight(1F))
-                OpcionVehiculo(
-                    opcion = inputTipo,
-                    num = 1,
-                    onClick = { inputTipo = 1 },
-                    texto = R.string.vehicle_type2,
-                    modifier = Modifier
-                )
-                Spacer(modifier = Modifier.weight(1F))
-                OpcionVehiculo(
-                    opcion = inputTipo,
-                    num = 2,
-                    onClick = { inputTipo = 2 },
-                    texto = R.string.vehicle_type3,
-                    modifier = Modifier
-                )
-            }
-        }
-        // espaciar //
-        Spacer(modifier = Modifier.height(40.dp))
-        // mostrar el correspondiente formulario //
-        when (inputTipo) {
-            0 -> formuCar(modifier = modifier)
-            1 -> formuBike(modifier = modifier)
-            2 -> formuScooter(modifier = modifier)
-        }
-        // mostrar precio //
-        Row (
-            modifier = modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ){
-            Text(
-                text = "TOTAL",
-                fontFamily = One
-            )
-            Text(
-                text = "100.00 €"
-                /*
-                text = when (vehiculo) {
-                    is Car -> "turismo"
-                    is Bike -> "moto"
-                    is Scooter -> "patinene"
-                    else -> "error"
-                }
-                 */
-            )
-        }
-        // botones cancelar y aceptar //
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ){
-            Button(
-                modifier = Modifier
-                    .width(160.dp)
-                    .height(80.dp),
-                onClick = {}
-            ){
-                Text(
-                    text = "CANCELAR"
-                )
-            }
-            Button(
-                modifier = Modifier
-                    .width(160.dp)
-                    .height(80.dp),
-                onClick = {}
-            ){
-                Text(
-                    text = "ACEPTAR"
-                )
-            }
-        }
-    }
+    // extructura general //
+
 }
 
 // METODO BOTON CLASE VEHICULO --------------------------------------
@@ -632,3 +510,132 @@ fun RealizarPedidoPreview() {
         PantallaRealizarPedido()
     }
 }
+
+// CODIGO MUERTO ----------------------------------------------------
+
+/*
+Column (
+        modifier = modifier
+            .padding(40.dp)
+            .fillMaxWidth()
+    ){
+        // datos alquiler //
+        // elegir fecha y dias alquiler //
+        Row (
+            modifier = Modifier.fillMaxWidth().height(200.dp),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Column(
+                modifier = Modifier.width(160.dp)
+            ){
+                Text(
+                    text = "Fecha",
+                    fontFamily = One
+                )
+                OutlinedTextField(
+                    value = inputFecha,
+                    onValueChange = {inputFecha = it}
+                )
+                Spacer(modifier = Modifier.weight(1F))
+                Text(
+                    text = "Dias Alquiler",
+                    fontFamily = One
+                )
+                OutlinedTextField(
+                    value = inputDias,
+                    onValueChange = {inputDias = it},
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+            }
+            Column (
+                modifier = Modifier.width(160.dp)
+            ){
+                Text(
+                    text = "Vehiculo",
+                    fontFamily = One
+                )
+                OpcionVehiculo(
+                    opcion = inputTipo,
+                    num = 0,
+                    onClick = { inputTipo = 0 },
+                    texto = R.string.vehicle_type1,
+                    modifier = Modifier
+                )
+                Spacer(modifier = Modifier.weight(1F))
+                OpcionVehiculo(
+                    opcion = inputTipo,
+                    num = 1,
+                    onClick = { inputTipo = 1 },
+                    texto = R.string.vehicle_type2,
+                    modifier = Modifier
+                )
+                Spacer(modifier = Modifier.weight(1F))
+                OpcionVehiculo(
+                    opcion = inputTipo,
+                    num = 2,
+                    onClick = { inputTipo = 2 },
+                    texto = R.string.vehicle_type3,
+                    modifier = Modifier
+                )
+            }
+        }
+        // espaciar //
+        Spacer(modifier = Modifier.height(40.dp))
+        // mostrar el correspondiente formulario //
+        when (inputTipo) {
+            0 -> formuCar(modifier = modifier)
+            1 -> formuBike(modifier = modifier)
+            2 -> formuScooter(modifier = modifier)
+        }
+        // mostrar precio //
+        Row (
+            modifier = modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Text(
+                text = "TOTAL",
+                fontFamily = One
+            )
+            Text(
+                text = "100.00 €"
+                /*
+                text = when (vehiculo) {
+                    is Car -> "turismo"
+                    is Bike -> "moto"
+                    is Scooter -> "patinene"
+                    else -> "error"
+                }
+                 */
+            )
+        }
+        // botones cancelar y aceptar //
+        Row (
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Button(
+                modifier = Modifier
+                    .width(160.dp)
+                    .height(80.dp),
+                onClick = {}
+            ){
+                Text(
+                    text = "CANCELAR"
+                )
+            }
+            Button(
+                modifier = Modifier
+                    .width(160.dp)
+                    .height(80.dp),
+                onClick = {}
+            ){
+                Text(
+                    text = "ACEPTAR"
+                )
+            }
+        }
+    }
+ */

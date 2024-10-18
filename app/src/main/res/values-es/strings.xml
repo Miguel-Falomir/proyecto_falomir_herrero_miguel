@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vehicle_type1">Turismo</string>
+    <string name="vehicle_type2">Moto</string>
+    <string name="vehicle_type3">Patinete</string>
+    <string name="car1_fuel">Diesel</string>
+    <string name="button_Car">Turismo</string>
+    <string name="button_Bike">Moto</string>
+    <string name="button_Scooter">Patinete</string>
+    <string name="Check_Gas">Gasolina</string>
+    <string name="Check_Diesel">Diesel</string>
+    <string name="Check_Electric">Eléctrico</string>
+    <string name="Check_GPS_Y">Sí</string>
+    <string name="Check_GPS_N">No</string>
+    <string name="ResumenPedido_CreditType">Tipo Tarjeta</string>
+    <string name="button_OrderRent">Alquilar</string>
+    <string name="button_ListRents">Pedidos</string>
+    <string name="ResumenPedido_CreditNumber">Número</string>
+    <string name="ResumenPedido_CreditDate">Caducidad</string>
+    <string name="ResumenPedido_CreditCode">CVC</string>
+    <string name="button_pay">PAGAR</string>
+    <string name="button_exit">SALIR</string>
+    <string name="button_accept">ACEPTAR</string>
+    <string name="button_cancel">CANCELAR</string>
+</resources>

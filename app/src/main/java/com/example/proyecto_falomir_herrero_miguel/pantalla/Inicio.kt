@@ -1,4 +1,8 @@
+// PAQUETE ----------------------------------------------------------
+
 package com.example.proyecto_falomir_herrero_miguel.pantalla
+
+// LIBRERIAS --------------------------------------------------------
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,10 +32,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose.AppTheme
+import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
 import com.example.proyecto_falomir_herrero_miguel.model.User
 import com.example.proyecto_falomir_herrero_miguel.ui.theme.AppTypography
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+
+// METODO INICIAR PANTALLA ------------------------------------------
 
 @Composable
 fun PantallaInicio(modifier: Modifier = Modifier){
@@ -80,7 +87,7 @@ fun Botones(modifier: Modifier = Modifier){
             onClick = {}
         ){
             Text(
-                text = "ALQUILAR",
+                text = stringResource(R.string.button_OrderRent),
                 fontSize = 40.sp
             )
         }
@@ -89,7 +96,7 @@ fun Botones(modifier: Modifier = Modifier){
             onClick = {}
         ){
             Text(
-                text = "VER PEDIDOS",
+                text = stringResource(R.string.button_ListRents),
                 fontSize = 40.sp
             )
         }

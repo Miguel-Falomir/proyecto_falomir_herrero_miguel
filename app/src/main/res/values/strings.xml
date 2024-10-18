@@ -1,89 +1,108 @@
 <resources>
-    <string name="app_name">proyecto_falomir_herrero_miguel</string>
+    <string name="app_name" translatable="false">proyecto_falomir_herrero_miguel</string>
 
     <!-- USER DATA -->
 
-    <string name="User_name">Suzanne</string>
-    <string name="User_surnames">Garrido Nemesio</string>
-    <string name="User_email">suzieGN@email.blend</string>
-    <string name="User_phone">(+34) 555 123 456</string>
+    <string name="User_name" translatable="false">Suzanne</string>
+    <string name="User_surnames" translatable="false">Garrido Nemesio</string>
+    <string name="User_email" translatable="false">suzieGN@email.blend</string>
+    <string name="User_phone" translatable="false">(+34) 555 123 456</string>
+
+    <!-- CREDIT CARD DATA -->
+
+    <string name="creditCard_type1" translatable="false">Visa</string>
+    <string name="creditCard_type2" translatable="false">Master Card</string>
+    <string name="creditCard_type3" translatable="false">Euro 6000</string>
 
     <!-- VEHICLE DATA -->
 
-    <string name="vehicle_type1">Turismo</string>
-    <string name="vehicle_type2">Moto</string>
-    <string name="vehicle_type3">Patinete</string>
+    <string name="vehicle_type1">Car</string>
+    <string name="vehicle_type2">Bike</string>
+    <string name="vehicle_type3">Scooter</string>
 
     <!-- CAR DATA -->
 
-    <string name="car1_brand">Seat</string>
-    <string name="car1_model">Ibiza</string>
-    <string name="car1_hasGPS">false</string>
+    <string name="car1_brand" translatable="false">Seat</string>
+    <string name="car1_model" translatable="false">Ibiza</string>
+    <string name="car1_hasGPS" translatable="false">false</string>
     <string name="car1_fuel">Diesel</string>
 
     <!-- BIKE DATA -->
 
-    <string name="bike1_brand">Vespa</string>
-    <string name="bike1_model">Vespino</string>
-    <string name="bike1_hasGPS">false</string>
-    <string name="bike1_size">50</string>
+    <string name="bike1_brand" translatable="false">Vespa</string>
+    <string name="bike1_model" translatable="false">Vespino</string>
+    <string name="bike1_hasGPS" translatable="false">false</string>
+    <string name="bike1_size" translatable="false">50</string>
 
     <!-- SCOOTER DATA -->
 
-    <string name="scooter1_brand">Cecotec</string>
-    <string name="scooter1_model">Bongo</string>
-    <string name="scooter1_hasGPS">false</string>
+    <string name="scooter1_brand" translatable="false">Cecotec</string>
+    <string name="scooter1_model" translatable="false">Bongo</string>
+    <string name="scooter1_hasGPS" translatable="false">false</string>
 
     <!-- RENT DATA -->
 
-    <string name="rent1_date">2024-10-03</string>
-    <string name="rent1_rentDays">2</string>
-    <string name="rent1_price">100.00</string>
+    <string name="rent1_date" translatable="false">2024-10-03</string>
+    <string name="rent1_rentDays" translatable="false">2</string>
+    <string name="rent1_price" translatable="false">100.00</string>
 
-    <string name="rent2_date">2024-10-03</string>
-    <string name="rent2_rentDays">2</string>
-    <string name="rent2_price">100.00</string>
+    <string name="rent2_date" translatable="false">2024-10-03</string>
+    <string name="rent2_rentDays" translatable="false">2</string>
+    <string name="rent2_price" translatable="false">100.00</string>
 
-    <string name="rent3_date">2024-10-03</string>
-    <string name="rent3_rentDays">2</string>
-    <string name="rent3_price">100.00</string>
+    <string name="rent3_date" translatable="false">2024-10-03</string>
+    <string name="rent3_rentDays" translatable="false">2</string>
+    <string name="rent3_price" translatable="false">100.00</string>
 
-    <string name="rent4_date">2024-10-03</string>
-    <string name="rent4_rentDays">2</string>
-    <string name="rent4_price">100.00</string>
+    <string name="rent4_date" translatable="false">2024-10-03</string>
+    <string name="rent4_rentDays" translatable="false">2</string>
+    <string name="rent4_price" translatable="false">100.00</string>
 
-    <string name="rent5_date">2024-10-03</string>
-    <string name="rent5_rentDays">2</string>
-    <string name="rent5_price">100.00</string>
+    <string name="rent5_date" translatable="false">2024-10-03</string>
+    <string name="rent5_rentDays" translatable="false">2</string>
+    <string name="rent5_price" translatable="false">100.00</string>
 
-    <string name="rent6_date">2024-10-03</string>
-    <string name="rent6_rentDays">2</string>
-    <string name="rent6_price">100.00</string>
+    <string name="rent6_date" translatable="false">2024-10-03</string>
+    <string name="rent6_rentDays" translatable="false">2</string>
+    <string name="rent6_price" translatable="false">100.00</string>
 
-    <string name="rent7_date">2024-10-03</string>
-    <string name="rent7_rentDays">2</string>
-    <string name="rent7_price">100.00</string>
+    <string name="rent7_date" translatable="false">2024-10-03</string>
+    <string name="rent7_rentDays" translatable="false">2</string>
+    <string name="rent7_price" translatable="false">100.00</string>
 
-    <string name="rent8_date">2024-10-03</string>
-    <string name="rent8_rentDays">2</string>
-    <string name="rent8_price">100.00</string>
+    <string name="rent8_date" translatable="false">2024-10-03</string>
+    <string name="rent8_rentDays" translatable="false">2</string>
+    <string name="rent8_price" translatable="false">100.00</string>
 
-    <string name="rent9_date">2024-10-03</string>
-    <string name="rent9_rentDays">2</string>
-    <string name="rent9_price">100.00</string>
+    <string name="rent9_date" translatable="false">2024-10-03</string>
+    <string name="rent9_rentDays" translatable="false">2</string>
+    <string name="rent9_price" translatable="false">100.00</string>
 
     <!-- BUTTONS TITLES -->
 
-    <string name="button_Car">Turismo</string>
-    <string name="button_Bike">Moto</string>
-    <string name="button_Scooter">Patinete</string>
-    <string name="Check_Gas">Gasolina</string>
+    <string name="button_pay">PAY</string>
+    <string name="button_exit">EXIT</string>
+    <string name="button_accept">ACCEPT</string>
+    <string name="button_cancel">CANCEL</string>
+    <string name="button_OrderRent">Order rent</string>
+    <string name="button_ListRents">See Rents</string>
+    <string name="button_Car">Car</string>
+    <string name="button_Bike">Bike</string>
+    <string name="button_Scooter">Scooter</string>
+    <string name="Check_Gas">Gas</string>
     <string name="Check_Diesel">Diesel</string>
-    <string name="Check_Electric">Eléctrico</string>
-    <string name="Check_50">50 cc</string>
-    <string name="Check_125">125 cc</string>
-    <string name="Check_250">250 cc</string>
-    <string name="Check_GPS_Y">Sí</string>
+    <string name="Check_Electric">Electric</string>
+    <string name="Check_50" translatable="false">50 cc</string>
+    <string name="Check_125" translatable="false">125 cc</string>
+    <string name="Check_250" translatable="false">250 cc</string>
+    <string name="Check_GPS_Y">Yes</string>
     <string name="Check_GPS_N">No</string>
+
+    <!-- SECTION TITLES -->
+
+    <string name="ResumenPedido_CreditType">Credit Card Type</string>
+    <string name="ResumenPedido_CreditNumber">Card Number</string>
+    <string name="ResumenPedido_CreditDate">Expiration</string>
+    <string name="ResumenPedido_CreditCode">Code</string>
 
 </resources>
