@@ -22,6 +22,7 @@
     <string name="button_exit">SALIR</string>
     <string name="button_accept">ACEPTAR</string>
     <string name="button_cancel">CANCELAR</string>
+    <string name="RealizarPedido_Brand">Marca</string>
     <string name="ResumenPedido_Vehicle">Vehiculo</string>
     <string name="ResumenPedido_Size">Cilindrada</string>
     <string name="ResumenPedido_Fuel">Combustible</string>
@@ -36,4 +37,8 @@
     <string name="ResumenPago_Card">Tarjeta</string>
     <string name="ResumenPago_Email">Correo Usuario</string>
     <string name="ResumenPago_Rent">de alquiler</string>
+    <string name="RealizarPedido_Model">Modelo</string>
+    <string name="vehicle_fuel1">Gasolina</string>
+    <string name="vehicle_fuel2">Diesel</string>
+    <string name="vehicle_fuel3">Electric</string>
 </resources>

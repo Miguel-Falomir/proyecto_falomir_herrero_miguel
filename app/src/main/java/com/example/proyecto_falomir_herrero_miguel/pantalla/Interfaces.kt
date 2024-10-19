@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
 
 // METODO BOTON -----------------------------------------------------
@@ -108,6 +110,7 @@ fun EntradaTexto(
     ){
         Text(
             text = stringResource(texto),
+            fontFamily = One,
             modifier = Modifier.weight(1F)
         )
         TextField(
@@ -129,10 +132,12 @@ fun EntradaNumero(
     modifier: Modifier = Modifier
 ){
     Row (
-        modifier = modifier
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
     ){
         Text(
             text = stringResource(texto),
+            fontFamily = One,
             modifier = Modifier.weight(1F)
         )
         TextField(
@@ -140,6 +145,38 @@ fun EntradaNumero(
             onValueChange = onValueChange,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.weight(1F)
+        )
+    }
+}
+
+// METODO FILA ENTRADA CHECKBOX ----------------------------------------
+
+@Composable
+fun EntradaCheckBox(
+    onValueChange: (Boolean) -> Unit,
+    value: Boolean,
+    texto: Int,
+    modifier: Modifier = Modifier
+){
+    Row (
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text(
+            text = stringResource(texto),
+            fontFamily = One,
+            modifier = Modifier.weight(1F)
+        )
+        Checkbox(
+            checked = value,
+            onCheckedChange = onValueChange
+        )
+        Text(
+            text = if (value) {
+                stringResource(R.string.Check_GPS_Y)
+            } else {
+                stringResource(R.string.Check_GPS_N)
+            }
         )
     }
 }
@@ -190,11 +227,3 @@ fun FilaDatoAuxiliar(
     }
 }
 
-// METODO COLUMNA TITULO Y DATO -------------------------------------
-
-@Composable
-fun ColumnaSalidaDato(
-
-){
-
-}

@@ -52,9 +52,6 @@ fun FormularioPago(modifier: Modifier = Modifier){
             text = stringResource(R.string.FormularioPago_CreditType),
             fontFamily = One
         )
-        listOf(
-            R.string.creditCard_type1,
-        )
         Row (
             modifier = Modifier.padding(20.dp).fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween

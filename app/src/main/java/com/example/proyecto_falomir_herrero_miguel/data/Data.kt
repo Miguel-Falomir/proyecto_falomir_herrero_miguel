@@ -29,21 +29,21 @@ class Data {
             R.string.vehicle_type1,
             R.string.car1_brand,
             R.string.car1_model,
-            R.string.car1_hasGPS,
-            R.string.car1_fuel
+            R.string.vehicle_hasGPS_false,
+            R.string.vehicle_fuel1
         ),
         Bike(
             R.string.vehicle_type2,
             R.string.bike1_brand,
             R.string.bike1_model,
-            R.string.bike1_hasGPS,
-            R.string.bike1_size
+            R.string.vehicle_hasGPS_false,
+            R.string.vehicle_size1
         ),
         Scooter(
             R.string.vehicle_type3,
             R.string.scooter1_brand,
             R.string.scooter1_model,
-            R.string.scooter1_hasGPS
+            R.string.vehicle_hasGPS_false
         )
     )
     fun RentList(): List<Rent> = listOf(

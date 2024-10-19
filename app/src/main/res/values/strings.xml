@@ -26,20 +26,24 @@
     <string name="vehicle_type1">Car</string>
     <string name="vehicle_type2">Bike</string>
     <string name="vehicle_type3">Scooter</string>
+    <string name="vehicle_fuel1">Gas</string>
+    <string name="vehicle_fuel2">Diesel</string>
+    <string name="vehicle_fuel3">Electric</string>
+    <string name="vehicle_size1" translatable="false">50 cc</string>
+    <string name="vehicle_size2" translatable="false">125 cc</string>
+    <string name="vehicle_size3" translatable="false">250 cc</string>
+    <string name="vehicle_hasGPS_true" translatable="false">true</string>
+    <string name="vehicle_hasGPS_false" translatable="false">false</string>
 
     <!-- CAR DATA -->
 
     <string name="car1_brand" translatable="false">Seat</string>
     <string name="car1_model" translatable="false">Ibiza</string>
-    <string name="car1_hasGPS" translatable="false">false</string>
-    <string name="car1_fuel">Diesel</string>
 
     <!-- BIKE DATA -->
 
     <string name="bike1_brand" translatable="false">Vespa</string>
     <string name="bike1_model" translatable="false">Vespino</string>
-    <string name="bike1_hasGPS" translatable="false">false</string>
-    <string name="bike1_size" translatable="false">50 cc</string>
 
     <!-- SCOOTER DATA -->
 
@@ -113,6 +117,9 @@
     <string name="FormularioPago_CreditNumber">Card Number</string>
     <string name="FormularioPago_CreditDate">Expiration</string>
     <string name="FormularioPago_CreditCode">Code</string>
+
+    <string name="RealizarPedido_Brand">Brand</string>
+    <string name="RealizarPedido_Model">Model</string>
 
     <string name="ResumenPedido_Vehicle">Vehicle</string>
     <string name="ResumenPedido_Size">Size</string>

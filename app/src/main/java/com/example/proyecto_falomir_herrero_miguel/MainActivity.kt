@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Arranque(modifier: Modifier = Modifier) {
-    PantallaInicio(modifier)
+    PantallaRealizarPedido(modifier)
 }
 
 // PREVIEW ----------------------------------------------------------
