@@ -49,14 +49,20 @@ fun RealizarPedido(modifier: Modifier = Modifier){
     val size3 = stringResource(R.string.vehicle_size3)
     // variables internas //
     var inputFecha by remember { mutableStateOf("1970-01-01") }
-    var inputDias by remember { mutableStateOf("") }
+    var inputDias by remember { mutableStateOf("1") }
     var inputTipo by remember { mutableStateOf(tipo1) }
     var inputMarca by remember { mutableStateOf("") }
     var inputModelo by remember { mutableStateOf("") }
-    var inputFuel by remember { mutableStateOf("") }
-    var inputSize by remember { mutableStateOf("") }
+    var inputFuel by remember { mutableStateOf(fuel1) }
+    var inputSize by remember { mutableStateOf(size1) }
     var inputGPS by remember { mutableStateOf(false) }
-    var precio by remember { mutableStateOf(0) }
+    var precio: Double = calcularAlquiler(
+        tipo = inputTipo,
+        fuel = inputFuel,
+        size = inputSize,
+        hasGPS = inputGPS,
+        dias = inputDias.toInt()
+    )
     // extructura general //
     Column (
         modifier = modifier.fillMaxWidth()
@@ -209,6 +215,42 @@ fun RealizarPedido(modifier: Modifier = Modifier){
         }
     }
 
+}
+
+// METODO CALCULAR ALQUILER -----------------------------------------
+
+@Composable
+fun calcularAlquiler(
+    tipo: String,
+    fuel: String,
+    size: String,
+    hasGPS: Boolean,
+    dias: Int
+): Double {
+    // variable interna //
+    var precio by remember { mutableStateOf(0.0) }
+    // definir precio diario //
+    when (tipo) {
+        stringResource(R.string.vehicle_type1) ->
+            precio = when (fuel) {
+                stringResource(R.string.vehicle_fuel1) -> 25.0
+                stringResource(R.string.vehicle_fuel2) -> 20.0
+                else -> 15.0
+            }
+        stringResource(R.string.vehicle_type2) ->
+            precio = when (size) {
+                stringResource(R.string.vehicle_size3) -> 20.0
+                stringResource(R.string.vehicle_size2) -> 15.0
+                else -> 10.0
+            }
+        else -> precio = 5.0
+    }
+    // sumar GPS //
+    if (hasGPS) { precio += 5.0 } else {}
+    // multiplicar por dias alquiler //
+    precio *= dias
+    // devolver precio //
+    return precio;
 }
 
 // PREVIEW ----------------------------------------------------------
