@@ -14,6 +14,13 @@
     <string name="creditCard_type2" translatable="false">Master Card</string>
     <string name="creditCard_type3" translatable="false">Euro 6000</string>
 
+    <!-- VISA DATA -->
+
+    <string name="visa1_Type" translatable="false">Visa</string>
+    <string name="visa1_Number" translatable="false">1234-5678-1357-2468</string>
+    <string name="visa1_Date" translatable="false">01/2027</string>
+    <string name="visa1_Code" translatable="false">555</string>
+
     <!-- VEHICLE DATA -->
 
     <string name="vehicle_type1">Car</string>
@@ -32,7 +39,7 @@
     <string name="bike1_brand" translatable="false">Vespa</string>
     <string name="bike1_model" translatable="false">Vespino</string>
     <string name="bike1_hasGPS" translatable="false">false</string>
-    <string name="bike1_size" translatable="false">50</string>
+    <string name="bike1_size" translatable="false">50 cc</string>
 
     <!-- SCOOTER DATA -->
 
@@ -84,7 +91,7 @@
     <string name="button_exit">EXIT</string>
     <string name="button_accept">ACCEPT</string>
     <string name="button_cancel">CANCEL</string>
-    <string name="button_OrderRent">Order rent</string>
+    <string name="button_OrderRent">Order Rent</string>
     <string name="button_ListRents">See Rents</string>
     <string name="button_Car">Car</string>
     <string name="button_Bike">Bike</string>
@@ -100,9 +107,27 @@
 
     <!-- SECTION TITLES -->
 
-    <string name="ResumenPedido_CreditType">Credit Card Type</string>
-    <string name="ResumenPedido_CreditNumber">Card Number</string>
-    <string name="ResumenPedido_CreditDate">Expiration</string>
-    <string name="ResumenPedido_CreditCode">Code</string>
+    <string name="blankSpace" translatable="false"></string>
+
+    <string name="FormularioPago_CreditType">Credit Card Type</string>
+    <string name="FormularioPago_CreditNumber">Card Number</string>
+    <string name="FormularioPago_CreditDate">Expiration</string>
+    <string name="FormularioPago_CreditCode">Code</string>
+
+    <string name="ResumenPedido_Vehicle">Vehicle</string>
+    <string name="ResumenPedido_Size">Size</string>
+    <string name="ResumenPedido_Fuel">Fuel</string>
+    <string name="ResumenPedido_HasGPS">GPS</string>
+    <string name="ResumenPedido_Date">Date</string>
+    <string name="ResumenPedido_RentDays">Rent days</string>
+    <string name="ResumenPedido_Total">Total</string>
+    <string name="ResumenPedido_Coin">$</string>
+
+    <string name="ResumenPago_Income">Income</string>
+    <string name="ResumenPago_Date">Paid</string>
+    <string name="ResumenPago_Concept">Concept</string>
+    <string name="ResumenPago_Rent">Rent</string>
+    <string name="ResumenPago_Card">Card</string>
+    <string name="ResumenPago_Email">User Email</string>
 
 </resources>

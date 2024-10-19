@@ -83,15 +83,28 @@ fun OpcionVehiculo(
     }
 }
 
-// METODO FORMULARIO (ALQUILER) -------------------------------------
+// PREVIEW ----------------------------------------------------------
+
+@Preview(showBackground = true)
+@Composable
+fun RealizarPedidoPreview() {
+    AppTheme {
+        PantallaRealizarPedido()
+    }
+}
+
+// CODIGO MUERTO ----------------------------------------------------
+
 /*
+// METODO FORMULARIO (ALQUILER) -------------------------------------
+
 @Composable
 fun formuRent(
     modifier: Modifier = Modifier
 ){
 
 }
- */
+
 // METODO FORMULARIO (CAR) ------------------------------------------
 
 @Composable
@@ -225,17 +238,13 @@ fun formuCar(modifier: Modifier = Modifier){
             }
         }
     }
-    /*
     newCar(
         brand = inputMarca,
         model = inputModelo,
         hasGPS = inputGPS,
         fuel = inputCombustible
     )
-
-     */
 }
-
 fun newCar(
     brand: String,
     model: String,
@@ -383,17 +392,13 @@ fun formuBike(modifier: Modifier = Modifier){
             }
         }
     }
-    /*
     newBike(
         brand = inputMarca,
         model = inputModelo,
         hasGPS = inputGPS,
         size = inputCilindrada
     )
-
-     */
 }
-
 fun newBike(
     brand: String,
     model: String,
@@ -479,15 +484,13 @@ fun formuScooter(modifier: Modifier = Modifier){
             }
         }
     }
-    /*
     newScooter(
         brand = inputMarca,
         model = inputModelo,
         hasGPS = inputGPS
     )
-
-     */
 }
+
 
 fun newScooter(
     brand: String,
@@ -500,18 +503,9 @@ fun newScooter(
         hasGPS = hasGPS.toString().toInt()
     )
 }
+ */
 
-// PREVIEW ----------------------------------------------------------
-
-@Preview(showBackground = true)
-@Composable
-fun RealizarPedidoPreview() {
-    AppTheme {
-        PantallaRealizarPedido()
-    }
-}
-
-// CODIGO MUERTO ----------------------------------------------------
+// MAS CODIGO MUERTO ------------------------------------------------
 
 /*
 Column (

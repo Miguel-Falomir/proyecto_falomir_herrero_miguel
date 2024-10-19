@@ -7,11 +7,9 @@ package com.example.proyecto_falomir_herrero_miguel.pantalla
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -35,8 +33,6 @@ import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
 import com.example.proyecto_falomir_herrero_miguel.model.User
-import com.example.proyecto_falomir_herrero_miguel.ui.theme.AppTypography
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -54,7 +50,11 @@ fun PantallaInicio(modifier: Modifier = Modifier){
         Spacer(
             modifier = Modifier.weight(1F)
         )
-        Botones(
+        ColumnaBotones(
+            listOf(
+                R.string.button_OrderRent,
+                R.string.button_ListRents
+            ),
             modifier = modifier
         )
     }
@@ -77,31 +77,7 @@ fun CartaUser(user: User, color: Color, modifier: Modifier = Modifier){
     }
 }
 
-@Composable
-fun Botones(modifier: Modifier = Modifier){
-    Column(
-        modifier = Modifier.padding(20.dp).fillMaxWidth()
-    ){
-        Button (
-            modifier = Modifier.padding(30.dp).fillMaxWidth().height(80.dp),
-            onClick = {}
-        ){
-            Text(
-                text = stringResource(R.string.button_OrderRent),
-                fontSize = 40.sp
-            )
-        }
-        Button (
-            modifier = Modifier.padding(30.dp).fillMaxWidth().height(80.dp),
-            onClick = {}
-        ){
-            Text(
-                text = stringResource(R.string.button_ListRents),
-                fontSize = 40.sp
-            )
-        }
-    }
-}
+
 
 @Composable
 fun DatosUser(user: User, modifier: Modifier = Modifier){

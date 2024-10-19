@@ -19,6 +19,7 @@ import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaFormularioPa
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaInicio
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaListaPedidos
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaRealizarPedido
+import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaResumenPago
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaResumenPedido
 
 // METODO INICIAR PANTALLA ------------------------------------------
@@ -43,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Arranque(modifier: Modifier = Modifier) {
-    PantallaFormularioPago(modifier)
+    PantallaInicio(modifier)
 }
 
 // PREVIEW ----------------------------------------------------------

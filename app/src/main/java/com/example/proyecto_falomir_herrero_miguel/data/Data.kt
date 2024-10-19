@@ -3,33 +3,44 @@ package com.example.proyecto_falomir_herrero_miguel.data
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.model.Bike
 import com.example.proyecto_falomir_herrero_miguel.model.Car
+import com.example.proyecto_falomir_herrero_miguel.model.Paycard
 import com.example.proyecto_falomir_herrero_miguel.model.Rent
 import com.example.proyecto_falomir_herrero_miguel.model.Scooter
 import com.example.proyecto_falomir_herrero_miguel.model.User
 import com.example.proyecto_falomir_herrero_miguel.model.Vehicle
 
 class Data {
+    fun VisaCard(): Paycard = Paycard(
+        typeId = R.string.visa1_Type,
+        numberId = R.string.visa1_Number,
+        dateId = R.string.visa1_Date,
+        codeId = R.string.visa1_Code
+    )
     fun UserDemo(): User = User(
         nameId = R.string.User_name,
         surnamesId = R.string.User_surnames,
         emailId = R.string.User_email,
         phoneNumberId = R.string.User_phone,
-        profileImageId = R.drawable.profile_image
+        profileImageId = R.drawable.profile_image,
+        paycard = VisaCard()
     )
     fun VehicleList(): List<Vehicle> = listOf(
         Car(
+            R.string.vehicle_type1,
             R.string.car1_brand,
             R.string.car1_model,
             R.string.car1_hasGPS,
             R.string.car1_fuel
         ),
         Bike(
+            R.string.vehicle_type2,
             R.string.bike1_brand,
             R.string.bike1_model,
             R.string.bike1_hasGPS,
             R.string.bike1_size
         ),
         Scooter(
+            R.string.vehicle_type3,
             R.string.scooter1_brand,
             R.string.scooter1_model,
             R.string.scooter1_hasGPS
@@ -54,7 +65,7 @@ class Data {
             R.string.rent3_date,
             R.string.rent3_rentDays,
             R.string.rent3_price,
-            VehicleList()[1],
+            VehicleList()[2],
             UserDemo()
         ),
         Rent(

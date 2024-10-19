@@ -8,5 +8,6 @@ data class User(
     @StringRes val surnamesId: Int,
     @StringRes val emailId: Int,
     @StringRes val phoneNumberId: Int,
-    @DrawableRes val profileImageId: Int
+    @DrawableRes val profileImageId: Int,
+    val paycard: Paycard
 )

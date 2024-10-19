@@ -4,8 +4,12 @@ package com.example.proyecto_falomir_herrero_miguel.pantalla
 
 // LIBRERIAS --------------------------------------------------------
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -16,7 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
 
 // METODO BOTON -----------------------------------------------------
 
@@ -37,6 +44,52 @@ fun Boton(
         Text(
             text = stringResource(texto)
         )
+    }
+}
+
+// METODO FILA BOTONES ----------------------------------------------
+
+@Composable
+fun FilaBotones(
+    list: List<Int>,
+    modifier: Modifier = Modifier
+){
+    Row (
+        modifier = Modifier.fillMaxWidth()
+    ){
+        list.forEach{ resource ->
+            Button (
+                modifier = Modifier.padding(20.dp).weight(1F).height(80.dp),
+                onClick = {}
+            ){
+                Text(
+                    text = stringResource(resource)
+                )
+            }
+        }
+    }
+}
+
+// METODO COLUMNA BOTONES -------------------------------------------
+
+@Composable
+fun ColumnaBotones(
+    list: List<Int>,
+    modifier: Modifier = Modifier
+){
+    Column(
+        modifier = Modifier.padding(20.dp).fillMaxWidth()
+    ){
+        list.forEach{ resource ->
+            Button (
+                modifier = Modifier.padding(30.dp).fillMaxWidth().height(80.dp),
+                onClick = {}
+            ){
+                Text(
+                    text = stringResource(resource)
+                )
+            }
+        }
     }
 }
 
@@ -89,4 +142,59 @@ fun EntradaNumero(
             modifier = Modifier.weight(1F)
         )
     }
+}
+
+// METODO FILA MOSTRAR DATO -----------------------------------------
+
+@Composable
+fun FilaSalidaDato(
+    texto: String,
+    dato: String,
+    modifier: Modifier = Modifier
+){
+    Row (
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text(
+            text = texto,
+            fontFamily = One,
+            modifier = Modifier.weight(1F)
+        )
+        Text(
+            text = dato
+        )
+    }
+}
+
+// METODO FILA MOSTRAR DATO AUXILIAR --------------------------------
+
+@Composable
+fun FilaDatoAuxiliar(
+    texto: String,
+    dato: String,
+    modifier: Modifier = Modifier
+){
+    Row (
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text(
+            text = texto,
+            fontFamily = One,
+            modifier = Modifier.weight(1F)
+        )
+        Text(
+            text = dato
+        )
+    }
+}
+
+// METODO COLUMNA TITULO Y DATO -------------------------------------
+
+@Composable
+fun ColumnaSalidaDato(
+
+){
+
 }
