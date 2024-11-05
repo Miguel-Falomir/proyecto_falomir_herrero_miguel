@@ -1,27 +1,13 @@
 <resources>
     <string name="app_name" translatable="false">proyecto_falomir_herrero_miguel</string>
 
-    <!-- USER DATA -->
-
-    <string name="User_name" translatable="false">Suzanne</string>
-    <string name="User_surnames" translatable="false">Garrido Nemesio</string>
-    <string name="User_email" translatable="false">suzieGN@email.blend</string>
-    <string name="User_phone" translatable="false">(+34) 555 123 456</string>
-
-    <!-- CREDIT CARD DATA -->
+    <!-- CREDIT CARD TYPES -->
 
     <string name="creditCard_type1" translatable="false">Visa</string>
     <string name="creditCard_type2" translatable="false">Master Card</string>
     <string name="creditCard_type3" translatable="false">Euro 6000</string>
 
-    <!-- VISA DATA -->
-
-    <string name="visa1_Type" translatable="false">Visa</string>
-    <string name="visa1_Number" translatable="false">1234-5678-1357-2468</string>
-    <string name="visa1_Date" translatable="false">01/2027</string>
-    <string name="visa1_Code" translatable="false">555</string>
-
-    <!-- VEHICLE DATA -->
+    <!-- VEHICLE ATTRIBUTES -->
 
     <string name="vehicle_type1">Car</string>
     <string name="vehicle_type2">Bike</string>
@@ -34,60 +20,6 @@
     <string name="vehicle_size3" translatable="false">250 cc</string>
     <string name="vehicle_hasGPS_true" translatable="false">true</string>
     <string name="vehicle_hasGPS_false" translatable="false">false</string>
-
-    <!-- CAR DATA -->
-
-    <string name="car1_brand" translatable="false">Seat</string>
-    <string name="car1_model" translatable="false">Ibiza</string>
-
-    <!-- BIKE DATA -->
-
-    <string name="bike1_brand" translatable="false">Vespa</string>
-    <string name="bike1_model" translatable="false">Vespino</string>
-
-    <!-- SCOOTER DATA -->
-
-    <string name="scooter1_brand" translatable="false">Cecotec</string>
-    <string name="scooter1_model" translatable="false">Bongo</string>
-    <string name="scooter1_hasGPS" translatable="false">false</string>
-
-    <!-- RENT DATA -->
-
-    <string name="rent1_date" translatable="false">2024-10-03</string>
-    <string name="rent1_rentDays" translatable="false">2</string>
-    <string name="rent1_price" translatable="false">100.00</string>
-
-    <string name="rent2_date" translatable="false">2024-10-03</string>
-    <string name="rent2_rentDays" translatable="false">2</string>
-    <string name="rent2_price" translatable="false">100.00</string>
-
-    <string name="rent3_date" translatable="false">2024-10-03</string>
-    <string name="rent3_rentDays" translatable="false">2</string>
-    <string name="rent3_price" translatable="false">100.00</string>
-
-    <string name="rent4_date" translatable="false">2024-10-03</string>
-    <string name="rent4_rentDays" translatable="false">2</string>
-    <string name="rent4_price" translatable="false">100.00</string>
-
-    <string name="rent5_rentDays" translatable="false">2</string>
-    <string name="rent5_price" translatable="false">100.00</string>
-    <string name="rent5_date" translatable="false">2024-11-01</string>
-
-    <string name="rent6_date" translatable="false">2024-10-03</string>
-    <string name="rent6_rentDays" translatable="false">2</string>
-    <string name="rent6_price" translatable="false">100.00</string>
-
-    <string name="rent7_date" translatable="false">2024-10-03</string>
-    <string name="rent7_rentDays" translatable="false">2</string>
-    <string name="rent7_price" translatable="false">100.00</string>
-
-    <string name="rent8_date" translatable="false">2024-10-03</string>
-    <string name="rent8_rentDays" translatable="false">2</string>
-    <string name="rent8_price" translatable="false">100.00</string>
-
-    <string name="rent9_date" translatable="false">2024-10-03</string>
-    <string name="rent9_rentDays" translatable="false">2</string>
-    <string name="rent9_price" translatable="false">100.00</string>
 
     <!-- BUTTONS TITLES -->
 

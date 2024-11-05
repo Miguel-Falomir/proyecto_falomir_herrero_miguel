@@ -91,13 +91,13 @@ fun CartaPedido (token: Rent, modifier: Modifier = Modifier) {
             */
             // Imprimir nombre objeto //
             Text(
-                text = stringResource(token.vehicle.brandId),
+                text = token.vehicle.brand,
                 modifier = Modifier.padding(start = 20.dp),
                 style = MaterialTheme.typography.headlineSmall,
             )
             Text(" ")
             Text(
-                text = stringResource(token.vehicle.modelId),
+                text = token.vehicle.model,
                 modifier = Modifier,
                 style = MaterialTheme.typography.headlineSmall,
             )
@@ -167,7 +167,11 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(stringResource(car.hasGPS).equals("true")) {"SI"} else {"NO"}
+                text = if(car.hasGPS) {
+                    stringResource(R.string.Check_Y)
+                } else {
+                    stringResource(R.string.Check_Y)
+                }
             )
         }
         // mostrar combustible //
@@ -179,7 +183,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(car.fuelId)
+                text = car.fuel
             )
         }
         // mostrar fecha
@@ -191,7 +195,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(rent.dateId)
+                text = rent.date
             )
         }
         // mostrar dias
@@ -199,14 +203,14 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "Alquiler"
+                text = stringResource(R.string.ResumenPedido_RentDays)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(rent.rentDaysId)
+                text = rent.rentDays
             )
             Text(
-                text = " dias"
+                text = stringResource(R.string.ResumenPedido_Time)
             )
         }
         // mostrar precio
@@ -218,10 +222,10 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(rent.priceId)
+                text = rent.price.toString()
             )
             Text(
-                text = " €"
+                text = stringResource(R.string.ResumenPedido_Coin)
             )
         }
     }
@@ -243,7 +247,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(stringResource(bike.hasGPS).equals("true")) {
+                text = if(bike.hasGPS) {
                     stringResource(R.string.Check_Y)
                 } else {
                     stringResource(R.string.Check_N)
@@ -259,10 +263,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(bike.sizeId)
-            )
-            Text(
-                text = " cc"
+                text = bike.size
             )
         }
         // mostrar fecha
@@ -274,7 +275,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(rent.dateId)
+                text = rent.date
             )
         }
         // mostrar dias
@@ -286,10 +287,10 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(rent.rentDaysId)
+                text = rent.rentDays
             )
             Text(
-                text = " dias"
+                text = stringResource(R.string.ResumenPedido_Time)
             )
         }
         // mostrar precio
@@ -301,7 +302,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(rent.priceId)
+                text = rent.price.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Coin)
@@ -326,7 +327,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(stringResource(scooter.hasGPS).equals("true")) {
+                text = if(scooter.hasGPS) {
                     stringResource(R.string.Check_Y)
                 } else {
                     stringResource(R.string.Check_N)
@@ -342,7 +343,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(rent.dateId)
+                text = rent.date
             )
         }
         // mostrar dias
@@ -354,7 +355,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(rent.rentDaysId)
+                text = rent.rentDays
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Time)
@@ -369,7 +370,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = stringResource(rent.priceId)
+                text = rent.price.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Coin)

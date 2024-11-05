@@ -43,13 +43,13 @@ fun ResumenPedido(
         // tipo vehiculo //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Vehicle),
-            dato = stringResource(rent.vehicle.brandId) + " " + stringResource(rent.vehicle.modelId),
+            dato = rent.vehicle.brand + " " + rent.vehicle.model,
             modifier = Modifier.padding(20.dp)
         )
         // nombre vehiculo //
         FilaDatoAuxiliar(
             texto = stringResource(R.string.blankSpace),
-            dato = stringResource(rent.vehicle.vehicleType),
+            dato = rent.vehicle.vehicle,
             modifier = Modifier.padding(20.dp)
         )
         // atributo concreto de cada vehiculo //
@@ -57,13 +57,13 @@ fun ResumenPedido(
             is Car ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Fuel),
-                    dato = stringResource((rent.vehicle as Car).fuelId),
+                    dato = (rent.vehicle as Car).fuel,
                     modifier = Modifier.padding(20.dp)
                 )
             is Bike ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Size),
-                    dato = stringResource((rent.vehicle as Bike).sizeId),
+                    dato = (rent.vehicle as Bike).size,
                     modifier = Modifier.padding(20.dp)
                 )
             else -> null
@@ -71,25 +71,25 @@ fun ResumenPedido(
         // GPS //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_HasGPS),
-            dato = stringResource(rent.vehicle.hasGPS),
+            dato = rent.vehicle.hasGPS.toString(),
             modifier = Modifier.padding(20.dp)
         )
         // fecha //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Date),
-            dato = stringResource(rent.dateId),
+            dato = rent.date,
             modifier = Modifier.padding(20.dp)
         )
         // alquiler //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_RentDays),
-            dato = stringResource(rent.rentDaysId),
+            dato = rent.rentDays,
             modifier = Modifier.padding(20.dp)
         )
         // total //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Total),
-            dato = stringResource(rent.priceId) + " " + stringResource(R.string.ResumenPedido_Coin),
+            dato = rent.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //

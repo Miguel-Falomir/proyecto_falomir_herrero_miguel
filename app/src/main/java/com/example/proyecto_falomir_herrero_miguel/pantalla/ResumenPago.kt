@@ -42,31 +42,31 @@ fun ResumenPago(
         // Ingreso //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Income),
-            dato = stringResource(rent.priceId) + " " + stringResource(R.string.ResumenPedido_Coin),
+            dato = rent.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
             modifier = Modifier.padding(20.dp)
         )
         // fecha //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Date),
-            dato = stringResource(rent.dateId),
+            dato = rent.date,
             modifier = Modifier.padding(20.dp)
         )
         // Concepto //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Concept),
-            dato = stringResource(rent.vehicle.vehicleType) + " " + stringResource(R.string.ResumenPago_Rent),
+            dato = rent.vehicle.vehicle + " " + stringResource(R.string.ResumenPago_Rent),
             modifier = Modifier.padding(20.dp)
         )
         // Tarjeta //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Card),
-            dato = stringResource(rent.user.paycard.numberId),
+            dato = rent.user.paycard.number,
             modifier = Modifier.padding(20.dp)
         )
         // Correo //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Email),
-            dato = stringResource(rent.user.emailId),
+            dato = rent.user.email,
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //
