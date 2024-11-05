@@ -2,10 +2,10 @@ package com.example.proyecto_falomir_herrero_miguel.model
 
 import androidx.annotation.StringRes
 
-class Rent (
-    @StringRes val dateId: Int,
-    @StringRes val rentDaysId: Int,
-    @StringRes val priceId: Int,
+data class Rent (
+    val date: String,
+    val rentDays: String,
+    val price: Double,
     val vehicle: Vehicle,
     val user: User
 )

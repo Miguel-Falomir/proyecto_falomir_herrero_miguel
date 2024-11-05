@@ -92,7 +92,7 @@ fun DatosUser(user: User, modifier: Modifier = Modifier){
                 contentDescription = null
             )
             Text(
-                text = stringResource(user.nameId),
+                text = user.name,
                 modifier = Modifier.padding(5.dp, 0.dp)
             )
         }
@@ -103,7 +103,7 @@ fun DatosUser(user: User, modifier: Modifier = Modifier){
                 modifier = Modifier.width(24.dp)
             )
             Text(
-                text = stringResource(user.surnamesId),
+                text = user.surnames,
                 modifier = Modifier.padding(5.dp, 0.dp)
             )
         }
@@ -115,7 +115,7 @@ fun DatosUser(user: User, modifier: Modifier = Modifier){
                 contentDescription = null
             )
             Text(
-                text = stringResource(user.emailId),
+                text = user.email,
                 modifier = Modifier.padding(5.dp, 0.dp)
             )
         }
@@ -127,7 +127,7 @@ fun DatosUser(user: User, modifier: Modifier = Modifier){
                 contentDescription = null
             )
             Text(
-                text = stringResource(user.phoneNumberId),
+                text = user.phone,
                 modifier = Modifier.padding(5.dp, 0.dp)
             )
         }
