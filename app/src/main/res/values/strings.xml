@@ -69,9 +69,9 @@
     <string name="rent4_rentDays" translatable="false">2</string>
     <string name="rent4_price" translatable="false">100.00</string>
 
-    <string name="rent5_date" translatable="false">2024-10-03</string>
     <string name="rent5_rentDays" translatable="false">2</string>
     <string name="rent5_price" translatable="false">100.00</string>
+    <string name="rent5_date" translatable="false">2024-11-01</string>
 
     <string name="rent6_date" translatable="false">2024-10-03</string>
     <string name="rent6_rentDays" translatable="false">2</string>
@@ -100,14 +100,18 @@
     <string name="button_Car">Car</string>
     <string name="button_Bike">Bike</string>
     <string name="button_Scooter">Scooter</string>
+
     <string name="Check_Gas">Gas</string>
     <string name="Check_Diesel">Diesel</string>
     <string name="Check_Electric">Electric</string>
     <string name="Check_50" translatable="false">50 cc</string>
     <string name="Check_125" translatable="false">125 cc</string>
     <string name="Check_250" translatable="false">250 cc</string>
-    <string name="Check_GPS_Y">Yes</string>
-    <string name="Check_GPS_N">No</string>
+    <string name="Check_Y">Yes</string>
+    <string name="Check_N">No</string>
+
+    <string name="IconButton_Open">Open</string>
+    <string name="IconButton_Close">Close</string>
 
     <!-- SECTION TITLES -->
 
@@ -129,6 +133,7 @@
     <string name="ResumenPedido_RentDays">Rent days</string>
     <string name="ResumenPedido_Total">Total</string>
     <string name="ResumenPedido_Coin">$</string>
+    <string name="ResumenPedido_Time">Days</string>
 
     <string name="ResumenPago_Income">Income</string>
     <string name="ResumenPago_Date">Paid</string>

@@ -39,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
+import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
 import com.example.proyecto_falomir_herrero_miguel.model.Bike
 import com.example.proyecto_falomir_herrero_miguel.model.Car
@@ -140,7 +141,11 @@ fun IconoExpansible(
             } else {
                 Icons.Default.KeyboardArrowDown
             },
-            contentDescription = if (binario) {"Abierto"} else {"Cerrado"},
+            contentDescription = if (binario) {
+                stringResource(R.string.IconButton_Open)
+            } else {
+                stringResource(R.string.IconButton_Close)
+            },
             modifier = Modifier.size(30.dp)
         )
     }
@@ -238,7 +243,11 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(stringResource(bike.hasGPS).equals("true")) {"SI"} else {"NO"}
+                text = if(stringResource(bike.hasGPS).equals("true")) {
+                    stringResource(R.string.Check_Y)
+                } else {
+                    stringResource(R.string.Check_N)
+                }
             )
         }
         // mostrar cilindrada
@@ -246,7 +255,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "Cilindrada"
+                text = stringResource(R.string.ResumenPedido_Size)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
@@ -261,7 +270,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "Fecha"
+                text = stringResource(R.string.ResumenPedido_Date)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
@@ -273,7 +282,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "Alquiler"
+                text = stringResource(R.string.ResumenPedido_RentDays)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
@@ -288,14 +297,14 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "Cilindrada"
+                text = stringResource(R.string.ResumenPedido_Total)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
                 text = stringResource(rent.priceId)
             )
             Text(
-                text = " €"
+                text = stringResource(R.string.ResumenPedido_Coin)
             )
         }
     }
@@ -313,11 +322,15 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             modifier = Modifier
         ){
             Text(
-                text = "GPS"
+                text = stringResource(R.string.ResumenPedido_HasGPS)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(stringResource(scooter.hasGPS).equals("true")) {"SI"} else {"NO"}
+                text = if(stringResource(scooter.hasGPS).equals("true")) {
+                    stringResource(R.string.Check_Y)
+                } else {
+                    stringResource(R.string.Check_N)
+                }
             )
         }
         // mostrar fecha
@@ -325,7 +338,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             modifier = Modifier
         ){
             Text(
-                text = "Fecha"
+                text = stringResource(R.string.ResumenPedido_Date)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
@@ -337,14 +350,14 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             modifier = Modifier
         ){
             Text(
-                text = "Alquiler"
+                text = stringResource(R.string.ResumenPedido_RentDays)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
                 text = stringResource(rent.rentDaysId)
             )
             Text(
-                text = " dias"
+                text = stringResource(R.string.ResumenPedido_Time)
             )
         }
         // mostrar precio
@@ -352,14 +365,14 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             modifier = Modifier
         ){
             Text(
-                text = "Cilindrada"
+                text = stringResource(R.string.ResumenPedido_Size)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
                 text = stringResource(rent.priceId)
             )
             Text(
-                text = " €"
+                text = stringResource(R.string.ResumenPedido_Coin)
             )
         }
     }

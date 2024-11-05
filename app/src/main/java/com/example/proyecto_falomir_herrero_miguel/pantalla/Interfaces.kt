@@ -173,9 +173,9 @@ fun EntradaCheckBox(
         )
         Text(
             text = if (value) {
-                stringResource(R.string.Check_GPS_Y)
+                stringResource(R.string.Check_Y)
             } else {
-                stringResource(R.string.Check_GPS_N)
+                stringResource(R.string.Check_N)
             }
         )
     }
