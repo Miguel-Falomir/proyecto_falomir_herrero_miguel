@@ -72,7 +72,9 @@ fun CartaPedido (token: Rent, modifier: Modifier = Modifier) {
     // variables internas //
     var binario: Boolean by remember { mutableStateOf( false ) }
 
-    Card (modifier = Modifier.padding(40.dp, 20.dp)) {
+    Card (
+        modifier = Modifier.padding(40.dp, 20.dp)
+    ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -115,7 +117,7 @@ fun CartaPedido (token: Rent, modifier: Modifier = Modifier) {
                 is Car -> DetallesCar(token, token.vehicle, modifier)
                 is Bike -> DetallesBike(token, token.vehicle, modifier)
                 is Scooter -> DetallesScooter(token, token.vehicle, modifier)
-                else -> Text(text = "error de clase")
+                else -> Text(text = stringResource(R.string.ClassError))
             }
         }
     }
@@ -163,7 +165,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "GPS"
+                text = stringResource(R.string.ResumenPedido_HasGPS)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
@@ -179,7 +181,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "Combustible"
+                text = stringResource(R.string.ResumenPedido_Fuel)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
@@ -191,7 +193,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "Fecha"
+                text = stringResource(R.string.ResumenPedido_Date)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
@@ -218,7 +220,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "Cilindrada"
+                text = stringResource(R.string.ResumenPedido_Size)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
@@ -243,7 +245,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             modifier = Modifier
         ){
             Text(
-                text = "GPS"
+                text = stringResource(R.string.ResumenPedido_HasGPS)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(

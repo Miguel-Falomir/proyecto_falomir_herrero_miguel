@@ -74,4 +74,6 @@
     <string name="ResumenPago_Card">Card</string>
     <string name="ResumenPago_Email">User Email</string>
 
+    <string name="ClassError">Class error</string>
+
 </resources>

@@ -43,4 +43,5 @@
     <string name="Check_Y">Sí</string>
     <string name="Check_N">No</string>
     <string name="ResumenPedido_Time">Días</string>
+    <string name="ClassError">Error de clase</string>
 </resources>

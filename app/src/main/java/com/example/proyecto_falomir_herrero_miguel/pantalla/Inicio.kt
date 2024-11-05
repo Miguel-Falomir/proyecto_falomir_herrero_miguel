@@ -132,24 +132,6 @@ fun DatosUser(user: User, modifier: Modifier = Modifier){
             )
         }
     }
-    /*
-    Column (
-        modifier = modifier
-    ){
-        Text(
-            text = stringResource(user.nameId)
-        )
-        Text(
-            text = stringResource(user.surnamesId)
-        )
-        Text(
-            text = stringResource(user.emailId)
-        )
-        Text(
-            text = stringResource(user.phoneNumberId)
-        )
-    }
-    */
 }
 
 @Preview(showBackground = true)
