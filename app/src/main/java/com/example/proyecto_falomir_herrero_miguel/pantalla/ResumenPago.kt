@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -17,8 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
-import com.example.proyecto_falomir_herrero_miguel.model.Rent
-import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
+import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -34,7 +32,7 @@ fun ResumenPago(
     modifier: Modifier = Modifier
 ){
     // variables internas //
-    var rent: Rent = Data().RentList()[0]
+    var rentUIState: RentUIState = Data().RentList()[0]
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()
@@ -42,31 +40,31 @@ fun ResumenPago(
         // Ingreso //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Income),
-            dato = rent.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
+            dato = rentUIState.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
             modifier = Modifier.padding(20.dp)
         )
         // fecha //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Date),
-            dato = rent.date,
+            dato = rentUIState.date,
             modifier = Modifier.padding(20.dp)
         )
         // Concepto //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Concept),
-            dato = rent.vehicle.vehicle + " " + stringResource(R.string.ResumenPago_Rent),
+            dato = rentUIState.vehicleUIState.vehicle + " " + stringResource(R.string.ResumenPago_Rent),
             modifier = Modifier.padding(20.dp)
         )
         // Tarjeta //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Card),
-            dato = rent.user.paycard.number,
+            dato = rentUIState.userUIState.paycardUIState.number,
             modifier = Modifier.padding(20.dp)
         )
         // Correo //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Email),
-            dato = rent.user.email,
+            dato = rentUIState.userUIState.email,
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //

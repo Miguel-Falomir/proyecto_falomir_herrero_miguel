@@ -16,10 +16,9 @@ import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
-import com.example.proyecto_falomir_herrero_miguel.model.Bike
-import com.example.proyecto_falomir_herrero_miguel.model.Car
-import com.example.proyecto_falomir_herrero_miguel.model.Rent
-import com.example.proyecto_falomir_herrero_miguel.model.Scooter
+import com.example.proyecto_falomir_herrero_miguel.model.BikeUIState
+import com.example.proyecto_falomir_herrero_miguel.model.CarUIState
+import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -35,7 +34,7 @@ fun ResumenPedido(
     modifier: Modifier = Modifier
 ){
     // variables internas //
-    var rent: Rent = Data().RentList()[1]
+    var rentUIState: RentUIState = Data().RentList()[1]
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()
@@ -43,27 +42,27 @@ fun ResumenPedido(
         // tipo vehiculo //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Vehicle),
-            dato = rent.vehicle.brand + " " + rent.vehicle.model,
+            dato = rentUIState.vehicleUIState.brand + " " + rentUIState.vehicleUIState.model,
             modifier = Modifier.padding(20.dp)
         )
         // nombre vehiculo //
         FilaDatoAuxiliar(
             texto = stringResource(R.string.blankSpace),
-            dato = rent.vehicle.vehicle,
+            dato = rentUIState.vehicleUIState.vehicle,
             modifier = Modifier.padding(20.dp)
         )
         // atributo concreto de cada vehiculo //
-        when (rent.vehicle) {
-            is Car ->
+        when (rentUIState.vehicleUIState) {
+            is CarUIState ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Fuel),
-                    dato = (rent.vehicle as Car).fuel,
+                    dato = (rentUIState.vehicleUIState as CarUIState).fuel,
                     modifier = Modifier.padding(20.dp)
                 )
-            is Bike ->
+            is BikeUIState ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Size),
-                    dato = (rent.vehicle as Bike).size,
+                    dato = (rentUIState.vehicleUIState as BikeUIState).size,
                     modifier = Modifier.padding(20.dp)
                 )
             else -> null
@@ -71,25 +70,25 @@ fun ResumenPedido(
         // GPS //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_HasGPS),
-            dato = rent.vehicle.hasGPS.toString(),
+            dato = rentUIState.vehicleUIState.hasGPS.toString(),
             modifier = Modifier.padding(20.dp)
         )
         // fecha //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Date),
-            dato = rent.date,
+            dato = rentUIState.date,
             modifier = Modifier.padding(20.dp)
         )
         // alquiler //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_RentDays),
-            dato = rent.rentDays,
+            dato = rentUIState.rentDays,
             modifier = Modifier.padding(20.dp)
         )
         // total //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Total),
-            dato = rent.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
+            dato = rentUIState.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //

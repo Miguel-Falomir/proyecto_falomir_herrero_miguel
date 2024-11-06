@@ -4,16 +4,13 @@ package com.example.proyecto_falomir_herrero_miguel.pantalla
 
 // LIBRERIAS --------------------------------------------------------
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -31,21 +28,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
-import com.example.proyecto_falomir_herrero_miguel.model.Bike
-import com.example.proyecto_falomir_herrero_miguel.model.Car
-import com.example.proyecto_falomir_herrero_miguel.model.Rent
-import com.example.proyecto_falomir_herrero_miguel.model.Scooter
-import com.example.proyecto_falomir_herrero_miguel.model.Vehicle
+import com.example.proyecto_falomir_herrero_miguel.model.BikeUIState
+import com.example.proyecto_falomir_herrero_miguel.model.CarUIState
+import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
+import com.example.proyecto_falomir_herrero_miguel.model.ScooterUIState
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -57,7 +49,7 @@ fun PantallaListaPedidos(modifier: Modifier = Modifier){
 // METODO COLUMNA PEDIDOS -------------------------------------------
 
 @Composable
-fun ColumnaPedidos (data: List<Rent>, modifier: Modifier = Modifier) {
+fun ColumnaPedidos (data: List<RentUIState>, modifier: Modifier = Modifier) {
     LazyColumn (modifier = modifier) {
         items(data) { token ->
             CartaPedido(token, modifier)
@@ -68,7 +60,7 @@ fun ColumnaPedidos (data: List<Rent>, modifier: Modifier = Modifier) {
 // METODO CARTA PEDIDO ----------------------------------------------
 
 @Composable
-fun CartaPedido (token: Rent, modifier: Modifier = Modifier) {
+fun CartaPedido (token: RentUIState, modifier: Modifier = Modifier) {
     // variables internas //
     var binario: Boolean by remember { mutableStateOf( false ) }
 
@@ -93,13 +85,13 @@ fun CartaPedido (token: Rent, modifier: Modifier = Modifier) {
             */
             // Imprimir nombre objeto //
             Text(
-                text = token.vehicle.brand,
+                text = token.vehicleUIState.brand,
                 modifier = Modifier.padding(start = 20.dp),
                 style = MaterialTheme.typography.headlineSmall,
             )
             Text(" ")
             Text(
-                text = token.vehicle.model,
+                text = token.vehicleUIState.model,
                 modifier = Modifier,
                 style = MaterialTheme.typography.headlineSmall,
             )
@@ -113,10 +105,10 @@ fun CartaPedido (token: Rent, modifier: Modifier = Modifier) {
             )
         }
         if (binario) {
-            when (token.vehicle) {
-                is Car -> DetallesCar(token, token.vehicle, modifier)
-                is Bike -> DetallesBike(token, token.vehicle, modifier)
-                is Scooter -> DetallesScooter(token, token.vehicle, modifier)
+            when (token.vehicleUIState) {
+                is CarUIState -> DetallesCar(token, token.vehicleUIState, modifier)
+                is BikeUIState -> DetallesBike(token, token.vehicleUIState, modifier)
+                is ScooterUIState -> DetallesScooter(token, token.vehicleUIState, modifier)
                 else -> Text(text = stringResource(R.string.ClassError))
             }
         }
@@ -156,7 +148,7 @@ fun IconoExpansible(
 // METODO DETALLES PEDIDO (CAR) -------------------------------------
 
 @Composable
-fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
+fun DetallesCar(rentUIState: RentUIState, carUIState: CarUIState, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(20.dp)
     ){
@@ -169,7 +161,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(car.hasGPS) {
+                text = if(carUIState.hasGPS) {
                     stringResource(R.string.Check_Y)
                 } else {
                     stringResource(R.string.Check_Y)
@@ -185,7 +177,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = car.fuel
+                text = carUIState.fuel
             )
         }
         // mostrar fecha
@@ -197,7 +189,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.date
+                text = rentUIState.date
             )
         }
         // mostrar dias
@@ -209,7 +201,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.rentDays
+                text = rentUIState.rentDays
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Time)
@@ -224,7 +216,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.price.toString()
+                text = rentUIState.price.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Coin)
@@ -236,7 +228,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
 // METODO DETALLES PEDIDO (BIKE) ------------------------------------
 
 @Composable
-fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
+fun DetallesBike(rentUIState: RentUIState, bikeUIState: BikeUIState, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(20.dp)
     ){
@@ -249,7 +241,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(bike.hasGPS) {
+                text = if(bikeUIState.hasGPS) {
                     stringResource(R.string.Check_Y)
                 } else {
                     stringResource(R.string.Check_N)
@@ -265,7 +257,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = bike.size
+                text = bikeUIState.size
             )
         }
         // mostrar fecha
@@ -277,7 +269,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.date
+                text = rentUIState.date
             )
         }
         // mostrar dias
@@ -289,7 +281,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.rentDays
+                text = rentUIState.rentDays
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Time)
@@ -304,7 +296,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.price.toString()
+                text = rentUIState.price.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Coin)
@@ -316,7 +308,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
 // METODO DETALLES PEDIDO (SCOOTER) ---------------------------------
 
 @Composable
-fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier){
+fun DetallesScooter(rentUIState: RentUIState, scooterUIState: ScooterUIState, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(20.dp)
     ){
@@ -329,7 +321,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(scooter.hasGPS) {
+                text = if(scooterUIState.hasGPS) {
                     stringResource(R.string.Check_Y)
                 } else {
                     stringResource(R.string.Check_N)
@@ -345,7 +337,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.date
+                text = rentUIState.date
             )
         }
         // mostrar dias
@@ -357,7 +349,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.rentDays
+                text = rentUIState.rentDays
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Time)
@@ -372,7 +364,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.price.toString()
+                text = rentUIState.price.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Coin)

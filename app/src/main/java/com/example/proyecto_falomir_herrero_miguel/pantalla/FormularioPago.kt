@@ -22,8 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
-import com.example.proyecto_falomir_herrero_miguel.data.Data
-import com.example.proyecto_falomir_herrero_miguel.model.Paycard
 import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
 
 // METODO INICIAR PANTALLA ------------------------------------------

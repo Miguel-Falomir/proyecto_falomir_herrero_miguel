@@ -1,0 +1,16 @@
+package com.example.proyecto_falomir_herrero_miguel.model
+
+data class PaycardUIState (
+    val type: String,
+    val number: String,
+    val date: String,
+    val code: String
+) {
+    /**
+     * LO HAS HECHO TOODO AL REVES
+     * LA LOGICA , Y FUNCIONES, SE GENERA EN 'ClaseViewModel'
+     * NO EN 'ClaseUIState', QUE SOLO SE USA PARA DEFINIR EL CONSTRUCTOR.
+     * ASI QUE YA ESTAS TARDANDO EN CAMBIAR LOS CORCHETES >:(
+     * [SONIDO DE REBUSCAR SANDALIAS EN EL ZAPATERO DE MADRE]
+     */
+}
