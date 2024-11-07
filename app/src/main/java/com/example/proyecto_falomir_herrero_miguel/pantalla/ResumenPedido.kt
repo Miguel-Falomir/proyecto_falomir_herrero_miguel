@@ -86,7 +86,7 @@ fun ResumenPedido(
         // alquiler //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_RentDays),
-            dato = rentUIState.rentDays,
+            dato = rentUIState.rentDays + " " + stringResource(R.string.ResumenPedido_Time),
             modifier = Modifier.padding(20.dp)
         )
         // total //

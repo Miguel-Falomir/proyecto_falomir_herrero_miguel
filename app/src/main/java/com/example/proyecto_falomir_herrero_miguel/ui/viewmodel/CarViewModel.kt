@@ -14,7 +14,6 @@ class CarViewModel : ViewModel() {
     // variable privada, para guardar datos
     private val _uiState = MutableStateFlow(
         CarUIState(
-            vehicle = (Data().VehicleList()[i] as CarUIState).vehicle,
             brand = (Data().VehicleList()[i] as CarUIState).brand,
             model = (Data().VehicleList()[i] as CarUIState).model,
             hasGPS = (Data().VehicleList()[i] as CarUIState).hasGPS,

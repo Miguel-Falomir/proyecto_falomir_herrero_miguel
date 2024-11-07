@@ -14,7 +14,6 @@ class ScooterViewModel : ViewModel() {
     // variable privada, para guardar datos
     private val _uiState = MutableStateFlow(
         ScooterUIState(
-            vehicle = (Data().VehicleList()[i] as ScooterUIState).vehicle,
             brand = (Data().VehicleList()[i] as ScooterUIState).brand,
             model = (Data().VehicleList()[i] as ScooterUIState).model,
             hasGPS = (Data().VehicleList()[i] as ScooterUIState).hasGPS

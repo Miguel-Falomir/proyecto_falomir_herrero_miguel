@@ -14,7 +14,6 @@ class BikeViewModel : ViewModel() {
     // variable privada, para guardar datos
     private val _uiState = MutableStateFlow(
         BikeUIState(
-            vehicle = (Data().VehicleList()[i] as BikeUIState).vehicle,
             brand = (Data().VehicleList()[i] as BikeUIState).brand,
             model = (Data().VehicleList()[i] as BikeUIState).model,
             hasGPS = (Data().VehicleList()[i] as BikeUIState).hasGPS,

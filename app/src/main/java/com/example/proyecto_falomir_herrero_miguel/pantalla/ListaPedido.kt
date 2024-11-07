@@ -204,7 +204,7 @@ fun DetallesCar(rentUIState: RentUIState, carUIState: CarUIState, modifier: Modi
                 text = rentUIState.rentDays
             )
             Text(
-                text = stringResource(R.string.ResumenPedido_Time)
+                text = " " + stringResource(R.string.ResumenPedido_Time)
             )
         }
         // mostrar precio
