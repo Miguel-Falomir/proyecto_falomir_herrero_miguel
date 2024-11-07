@@ -31,22 +31,19 @@ class Data {
         profileImageId = R.drawable.profile_image,
         paycardUIState = VisaCard()
     )
-    // valores constantes vehiculos
-    fun VehicleTypes() : List<String> = listOf(
-        "CarUIState",
-        "BikeUIState",
-        "ScooterUIState"
-    )
+    // combustibles coches
     fun CarFuels() : List<String> = listOf(
         "Gas",
         "Diesel",
         "Electric"
     )
+    // cilindradas motos
     fun BikeSizes() : List<String> = listOf(
         "50 cc",
         "125 cc",
         "250 cc"
     )
+    // modelos vehiculos
     fun CarModels(): List<List<String>> = listOf(
         listOf("Seat", "Ibiza")
     )
@@ -59,24 +56,21 @@ class Data {
     // registro vehiculos
     fun VehicleList(): List<VehicleUIState> = listOf(
         CarUIState(
-            VehicleTypes()[0],
-            CarModels()[0][0],
-            CarModels()[0][1],
-            false,
-            CarFuels()[0]
+            brand = CarModels()[0][0],
+            model = CarModels()[0][1],
+            hasGPS = false,
+            fuel = CarFuels()[0]
         ),
         BikeUIState(
-            VehicleTypes()[1],
-            BikeModels()[0][0],
-            BikeModels()[0][1],
-            false,
-            BikeSizes()[0]
+            brand = BikeModels()[0][0],
+            model = BikeModels()[0][1],
+            hasGPS = false,
+            size = BikeSizes()[0]
         ),
         ScooterUIState(
-            VehicleTypes()[2],
-            ScooterModels()[0][0],
-            ScooterModels()[0][1],
-            false
+            brand = ScooterModels()[0][0],
+            model = ScooterModels()[0][1],
+            hasGPS = false
         )
     )
     // registro alquileres

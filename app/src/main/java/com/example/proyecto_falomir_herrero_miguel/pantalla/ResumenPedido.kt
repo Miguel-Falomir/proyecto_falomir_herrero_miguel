@@ -34,7 +34,7 @@ fun ResumenPedido(
     modifier: Modifier = Modifier
 ){
     // variables internas //
-    var rentUIState: RentUIState = Data().RentList()[1]
+    val rentUIState: RentUIState = Data().RentList()[1]
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()
@@ -48,7 +48,11 @@ fun ResumenPedido(
         // nombre vehiculo //
         FilaDatoAuxiliar(
             texto = stringResource(R.string.blankSpace),
-            dato = rentUIState.vehicleUIState.vehicle,
+            dato = when (rentUIState.vehicleUIState) {
+                is CarUIState -> stringResource(R.string.vehicle_type1)
+                is BikeUIState -> stringResource(R.string.vehicle_type2)
+                else -> stringResource(R.string.vehicle_type3)
+            },
             modifier = Modifier.padding(20.dp)
         )
         // atributo concreto de cada vehiculo //
@@ -56,13 +60,13 @@ fun ResumenPedido(
             is CarUIState ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Fuel),
-                    dato = (rentUIState.vehicleUIState as CarUIState).fuel,
+                    dato = rentUIState.vehicleUIState.fuel,
                     modifier = Modifier.padding(20.dp)
                 )
             is BikeUIState ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Size),
-                    dato = (rentUIState.vehicleUIState as BikeUIState).size,
+                    dato = rentUIState.vehicleUIState.size,
                     modifier = Modifier.padding(20.dp)
                 )
             else -> null

@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
+import com.example.proyecto_falomir_herrero_miguel.model.BikeUIState
+import com.example.proyecto_falomir_herrero_miguel.model.CarUIState
 import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
 
 // METODO INICIAR PANTALLA ------------------------------------------
@@ -32,7 +34,7 @@ fun ResumenPago(
     modifier: Modifier = Modifier
 ){
     // variables internas //
-    var rentUIState: RentUIState = Data().RentList()[0]
+    val rentUIState: RentUIState = Data().RentList()[0]
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()
@@ -52,7 +54,11 @@ fun ResumenPago(
         // Concepto //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Concept),
-            dato = rentUIState.vehicleUIState.vehicle + " " + stringResource(R.string.ResumenPago_Rent),
+            dato = when (rentUIState.vehicleUIState) {
+                is CarUIState -> stringResource(R.string.vehicle_type1)
+                is BikeUIState -> stringResource(R.string.vehicle_type2)
+                else -> stringResource(R.string.vehicle_type3)
+            } + " " + stringResource(R.string.ResumenPago_Rent),
             modifier = Modifier.padding(20.dp)
         )
         // Tarjeta //

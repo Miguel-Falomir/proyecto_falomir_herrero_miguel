@@ -1,13 +1,12 @@
 package com.example.proyecto_falomir_herrero_miguel.model
 
 data class BikeUIState(
-    override val vehicle: String,
     override val brand: String,
     override val model: String,
     override val hasGPS: Boolean,
     val size: String
 
-) : VehicleUIState(vehicle, brand, model, hasGPS) {
+) : VehicleUIState(brand, model, hasGPS) {
     /**
      * LO HAS HECHO TOODO AL REVES
      * LA LOGICA , Y FUNCIONES, SE GENERA EN 'ClaseViewModel'
