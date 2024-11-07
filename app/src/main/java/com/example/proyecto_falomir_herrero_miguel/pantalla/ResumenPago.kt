@@ -4,7 +4,9 @@ package com.example.proyecto_falomir_herrero_miguel.pantalla
 
 // LIBRERIAS --------------------------------------------------------
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -23,14 +25,24 @@ import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
 // METODO INICIAR PANTALLA ------------------------------------------
 
 @Composable
-fun PantallaResumenPago(modifier: Modifier = Modifier){
-    ResumenPago(modifier = modifier)
+fun PantallaResumenPago(
+    onCancelButton: () -> Unit,
+    onAcceptButton: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    ResumenPago(
+        onCancelButton,
+        onAcceptButton,
+        modifier = modifier
+    )
 }
 
 // M -
 
 @Composable
 fun ResumenPago(
+    onCancelButton: () -> Unit,
+    onAcceptButton: () -> Unit,
     modifier: Modifier = Modifier
 ){
     // variables internas //
@@ -76,13 +88,21 @@ fun ResumenPago(
         // espaciar //
         Spacer(modifier = Modifier.weight(1F))
         // botones aceptar y cancelar //
-        FilaBotones(
-            list = listOf(
-                R.string.button_cancel,
-                R.string.button_accept
-            ),
-            modifier = Modifier
-        )
+        Row (
+            modifier = Modifier.padding(20.dp).fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Boton(
+                w = 160, h = 80,
+                onClick = onCancelButton,
+                texto = R.string.button_cancel
+            )
+            Boton(
+                w = 160, h = 80,
+                onClick = onAcceptButton,
+                texto = R.string.button_accept
+            )
+        }
     }
 }
 
@@ -92,6 +112,9 @@ fun ResumenPago(
 @Composable
 fun ResumenPagoPreview() {
     AppTheme {
-        PantallaResumenPago()
+        PantallaResumenPago(
+            onCancelButton = {},
+            onAcceptButton = {}
+        )
     }
 }

@@ -21,6 +21,15 @@
     <string name="vehicle_hasGPS_true" translatable="false">true</string>
     <string name="vehicle_hasGPS_false" translatable="false">false</string>
 
+    <!-- SCREEN TITLES -->
+
+    <string name="title_inicio">Main menu</string>
+    <string name="title_listaPedido">Rents list</string>
+    <string name="title_realizarPedido">Make a rent</string>
+    <string name="title_resumenPedido">Confirm rent</string>
+    <string name="title_formularioPago">Payment data</string>
+    <string name="title_resumenPago">Confirm payment</string>
+
     <!-- BUTTONS TITLES -->
 
     <string name="button_pay">PAY</string>

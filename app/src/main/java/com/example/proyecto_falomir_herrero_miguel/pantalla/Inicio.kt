@@ -150,12 +150,13 @@ fun DatosUser(userUIState: UserUIState, modifier: Modifier = Modifier){
     }
 }
 
-/*
 @Preview(showBackground = true)
 @Composable
 fun InicioPreview() {
     AppTheme {
-        PantallaInicio()
+        PantallaInicio(
+            onListButton = {},
+            onOrderButton = {}
+        )
     }
 }
- */

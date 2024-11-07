@@ -8,12 +8,22 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.StringRes
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,13 +39,15 @@ import com.example.proyecto_falomir_herrero_miguel.pantalla.RealizarPedido
 
 // LISTA PANTALLAS --------------------------------------------------
 
-enum class Pantallas {
-    Inicio,
-    ListaPedidos,
-    RealizarPedido,
-    ResumenPedido,
-    FormularioPago,
-    ResumenPago
+enum class Pantallas (
+    @StringRes val titulo: Int
+) {
+    Inicio(titulo = R.string.title_inicio),
+    ListaPedidos(titulo = R.string.title_listaPedido),
+    RealizarPedido(titulo = R.string.title_realizarPedido),
+    ResumenPedido(titulo = R.string.title_resumenPedido),
+    FormularioPago(titulo = R.string.title_formularioPago),
+    ResumenPago(titulo = R.string.title_resumenPago)
 }
 
 // METODO INICIAR PANTALLA ------------------------------------------
@@ -86,13 +98,36 @@ fun Navegador(
                 modifier = Modifier.fillMaxSize()
             )
         }
-        composable(route = Pantallas.RealizarPedido.name) {
-            PantallaRealizarPedido(
+        composable(route = Pantallas.ListaPedidos.name) {
+            PantallaListaPedidos(
                 modifier = Modifier.fillMaxSize()
             )
         }
-        composable(route = Pantallas.ListaPedidos.name) {
-            PantallaListaPedidos(
+        composable(route = Pantallas.RealizarPedido.name) {
+            PantallaRealizarPedido(
+                onCancelButton = {navController.navigate(Pantallas.Inicio.name)},
+                onAcceptButton = {navController.navigate(Pantallas.ResumenPedido.name)},
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+        composable(route = Pantallas.ResumenPedido.name){
+            PantallaResumenPedido(
+                onCancelButton = {navController.navigate(Pantallas.RealizarPedido.name)},
+                onAcceptButton = {navController.navigate(Pantallas.FormularioPago.name)},
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+        composable(route = Pantallas.FormularioPago.name){
+            PantallaFormularioPago(
+                onCancelButton = {navController.navigate(Pantallas.ResumenPedido.name)},
+                onPayButton = {navController.navigate(Pantallas.ResumenPago.name)},
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+        composable(route = Pantallas.ResumenPago.name){
+            PantallaResumenPago(
+                onCancelButton = {navController.navigate(Pantallas.FormularioPago.name)},
+                onAcceptButton = {navController.navigate(Pantallas.Inicio.name)},
                 modifier = Modifier.fillMaxSize()
             )
         }

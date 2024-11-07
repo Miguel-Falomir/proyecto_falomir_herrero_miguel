@@ -44,4 +44,10 @@
     <string name="Check_N">No</string>
     <string name="ResumenPedido_Time">Días</string>
     <string name="ClassError">Error de clase</string>
+    <string name="title_inicio">Menú principal</string>
+    <string name="title_listaPedido">Lista pedidos</string>
+    <string name="title_realizarPedido">Pedir alquiler</string>
+    <string name="title_resumenPedido">Confirmar pedido</string>
+    <string name="title_formularioPago">Datos pago</string>
+    <string name="title_resumenPago">Confirmar pago</string>
 </resources>

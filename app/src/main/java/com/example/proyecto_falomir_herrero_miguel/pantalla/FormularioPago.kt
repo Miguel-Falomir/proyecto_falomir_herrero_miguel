@@ -27,14 +27,25 @@ import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
 // METODO INICIAR PANTALLA ------------------------------------------
 
 @Composable
-fun PantallaFormularioPago(modifier: Modifier = Modifier){
-    FormularioPago(modifier = modifier)
+fun PantallaFormularioPago(
+    onCancelButton: () -> Unit,
+    onPayButton: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    FormularioPago(
+        onCancelButton,
+        onPayButton,
+        modifier = modifier
+    )
 }
 
 // METODO RESUMEN PEDIDO --------------------------------------------
 
 @Composable
-fun FormularioPago(modifier: Modifier = Modifier){
+fun FormularioPago(
+    onCancelButton: () -> Unit,
+    onPayButton: () -> Unit,
+    modifier: Modifier = Modifier){
     // variables internas //
     var tipoTarjeta by remember { mutableStateOf(0) }
     var numeroTarjeta by remember { mutableStateOf("") }
@@ -98,12 +109,12 @@ fun FormularioPago(modifier: Modifier = Modifier){
         ){
             Boton(
                 w = 160, h = 80,
-                onClick = {  },
+                onClick = onCancelButton,
                 texto = R.string.button_cancel
             )
             Boton(
                 w = 160, h = 80,
-                onClick = {  },
+                onClick = onPayButton,
                 texto = R.string.button_pay
             )
         }
@@ -117,6 +128,9 @@ fun FormularioPago(modifier: Modifier = Modifier){
 @Composable
 fun FormularioPagoPreview() {
     AppTheme {
-        PantallaFormularioPago()
+        PantallaFormularioPago(
+            onCancelButton = {},
+            onPayButton = {}
+        )
     }
 }

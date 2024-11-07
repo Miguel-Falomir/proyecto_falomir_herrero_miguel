@@ -29,14 +29,26 @@ import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
 // METODO INICIAR PANTALLA ------------------------------------------
 
 @Composable
-fun PantallaRealizarPedido(modifier: Modifier = Modifier){
-    RealizarPedido(modifier = modifier)
+fun PantallaRealizarPedido(
+    onAcceptButton: () -> Unit,
+    onCancelButton: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    RealizarPedido(
+        onAcceptButton,
+        onCancelButton,
+        modifier = modifier
+    )
 }
 
 // METODO FORMULARIO PEDIDO -----------------------------------------
 
 @Composable
-fun RealizarPedido(modifier: Modifier = Modifier){
+fun RealizarPedido(
+    onAcceptButton: () -> Unit,
+    onCancelButton: () -> Unit,
+    modifier: Modifier = Modifier
+){
     // valores internos //
     val tipo1 = stringResource(R.string.vehicle_type1)
     val tipo2 = stringResource(R.string.vehicle_type2)
@@ -204,12 +216,12 @@ fun RealizarPedido(modifier: Modifier = Modifier){
         ){
             Boton(
                 w = 160, h = 80,
-                onClick = {  },
+                onClick = onCancelButton,
                 texto = R.string.button_cancel
             )
             Boton(
                 w = 160, h = 80,
-                onClick = {  },
+                onClick = onAcceptButton,
                 texto = R.string.button_accept
             )
         }
@@ -259,6 +271,9 @@ fun calcularAlquiler(
 @Composable
 fun RealizarPedidoPreview() {
     AppTheme {
-        PantallaRealizarPedido()
+        PantallaRealizarPedido(
+            onCancelButton = {},
+            onAcceptButton = {}
+        )
     }
 }
