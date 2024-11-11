@@ -50,4 +50,5 @@
     <string name="title_resumenPedido">Confirmar pedido</string>
     <string name="title_formularioPago">Datos pago</string>
     <string name="title_resumenPago">Confirmar pago</string>
+    <string name="title_back">Atrás</string>
 </resources>

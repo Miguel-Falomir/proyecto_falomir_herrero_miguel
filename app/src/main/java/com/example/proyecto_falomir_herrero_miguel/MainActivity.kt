@@ -14,19 +14,29 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaFormularioPago
@@ -36,6 +46,7 @@ import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaRealizarPedi
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaResumenPago
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaResumenPedido
 import com.example.proyecto_falomir_herrero_miguel.pantalla.RealizarPedido
+import com.example.proyecto_falomir_herrero_miguel.ui.viewmodel.VehicleViewModel
 
 // LISTA PANTALLAS --------------------------------------------------
 
@@ -58,11 +69,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Navegador(
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                // Scaffold se declara dentro de 'Navegador()'
+                // Por alguna razon, no hace falta pasarle 'navController' ni 'viewModel'
+                Navegador()
             }
         }
     }
@@ -79,59 +88,123 @@ fun Arranque(modifier: Modifier = Modifier) {
 
 @Composable
 fun Navegador(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    viewModel: VehicleViewModel = viewModel(),
+    modifier: Modifier = Modifier
 ) {
-    // 'navController' gestiona la navegacion entre pantallas.
-    // 'navHost' alberga la pantalla actual, en la que se encuentra el usuario al momento.
-    NavHost(
-        navController = navController,
-        startDestination = Pantallas.Inicio.name,
-        modifier = modifier
-    ) {
-        // Cada 'composable' define un grafo de navegacion.
-        // Esto es, una pantalla con las rutas de sus botones de navegacion.
-        composable(route = Pantallas.Inicio.name) {
-            PantallaInicio(
-                onOrderButton = {navController.navigate(Pantallas.RealizarPedido.name)},
-                onListButton = {navController.navigate(Pantallas.ListaPedidos.name)},
-                modifier = Modifier.fillMaxSize()
+    // Guardar pila de retroceso
+    // (lista de pantallas que hay detras de la pantalla actual)
+    // En pantalla inicio, esta pila queda vacia
+    val pilaRetroceso by navController.currentBackStackEntryAsState()
+
+    // Guardar pantalla actual
+    // Contiene un booleano que indica si hay mas pantallas detras
+    // La pantalla inicial deberia tener la pila de retroceso vacia
+    val pantallaActual = Pantallas.valueOf(
+        value = pilaRetroceso?.destination?.route ?: Pantallas.Inicio.name
+    )
+
+    Scaffold (
+        topBar = {
+            BarraSuperior(
+                pantallaActual = pantallaActual,
+                puedeRetroceder = navController.previousBackStackEntry != null,
+                onRetroceso = {navController.navigateUp()}
             )
         }
-        composable(route = Pantallas.ListaPedidos.name) {
-            PantallaListaPedidos(
-                modifier = Modifier.fillMaxSize()
-            )
-        }
-        composable(route = Pantallas.RealizarPedido.name) {
-            PantallaRealizarPedido(
-                onCancelButton = {navController.navigate(Pantallas.Inicio.name)},
-                onAcceptButton = {navController.navigate(Pantallas.ResumenPedido.name)},
-                modifier = Modifier.fillMaxSize()
-            )
-        }
-        composable(route = Pantallas.ResumenPedido.name){
-            PantallaResumenPedido(
-                onCancelButton = {navController.navigate(Pantallas.RealizarPedido.name)},
-                onAcceptButton = {navController.navigate(Pantallas.FormularioPago.name)},
-                modifier = Modifier.fillMaxSize()
-            )
-        }
-        composable(route = Pantallas.FormularioPago.name){
-            PantallaFormularioPago(
-                onCancelButton = {navController.navigate(Pantallas.ResumenPedido.name)},
-                onPayButton = {navController.navigate(Pantallas.ResumenPago.name)},
-                modifier = Modifier.fillMaxSize()
-            )
-        }
-        composable(route = Pantallas.ResumenPago.name){
-            PantallaResumenPago(
-                onCancelButton = {navController.navigate(Pantallas.FormularioPago.name)},
-                onAcceptButton = {navController.navigate(Pantallas.Inicio.name)},
-                modifier = Modifier.fillMaxSize()
-            )
+    ) { innerPadding ->
+        // Guardar estado del objeto actual
+        val uiState by viewModel.uiState.collectAsState()
+
+        // 'navController' gestiona la navegacion entre pantallas.
+        // 'navHost' alberga la pantalla actual, en la que se encuentra el usuario al momento.
+        NavHost(
+            navController = navController,
+            startDestination = Pantallas.Inicio.name,
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            // Cada 'composable' define un grafo de navegacion.
+            // Esto es, una pantalla con las rutas de sus botones de navegacion.
+            composable(route = Pantallas.Inicio.name) {
+                PantallaInicio(
+                    onOrderButton = { navController.navigate(Pantallas.RealizarPedido.name) },
+                    onListButton = { navController.navigate(Pantallas.ListaPedidos.name) },
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+            composable(route = Pantallas.ListaPedidos.name) {
+                PantallaListaPedidos(
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+            composable(route = Pantallas.RealizarPedido.name) {
+                PantallaRealizarPedido(
+                    onCancelButton = { navController.navigate(Pantallas.Inicio.name) },
+                    onAcceptButton = { navController.navigate(Pantallas.ResumenPedido.name) },
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+            composable(route = Pantallas.ResumenPedido.name) {
+                PantallaResumenPedido(
+                    onCancelButton = { navController.navigate(Pantallas.RealizarPedido.name) },
+                    onAcceptButton = { navController.navigate(Pantallas.FormularioPago.name) },
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+            composable(route = Pantallas.FormularioPago.name) {
+                PantallaFormularioPago(
+                    onCancelButton = { navController.navigate(Pantallas.ResumenPedido.name) },
+                    onPayButton = { navController.navigate(Pantallas.ResumenPago.name) },
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+            composable(route = Pantallas.ResumenPago.name) {
+                PantallaResumenPago(
+                    onCancelButton = { navController.navigate(Pantallas.FormularioPago.name) },
+                    onAcceptButton = { navController.navigate(Pantallas.Inicio.name) },
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
         }
     }
+}
+
+// METODO BARRA SUPERIOR --------------------------------------------
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BarraSuperior(
+    pantallaActual: Pantallas,
+    puedeRetroceder: Boolean,
+    onRetroceso: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    TopAppBar(
+        // Titulo de la pantalla actual.
+        title = {
+            Text( stringResource(pantallaActual.titulo))
+        },
+        // Paleta del elemento,
+        // se recomienda aplicar los colores primarios del tema.
+        colors = TopAppBarDefaults.mediumTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        ),
+        // Mostrar 'IconButton' de retroceso si la pila no esta vacia.
+        // Este boton retrocede siguiendo la pila al reves
+        // Recorrido: 1 -> 2 -> 3 -> 2
+        // IconButon: 2 -> 3 -> 2 -> 1
+        navigationIcon = {
+            if(puedeRetroceder) {
+                IconButton(onClick = onRetroceso) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = stringResource(id = R.string.title_back)
+                    )
+                }
+            }
+        },
+        modifier = modifier
+    )
 }
 
 // PREVIEW ----------------------------------------------------------
@@ -140,6 +213,6 @@ fun Navegador(
 @Composable
 fun Preview() {
     AppTheme {
-        Arranque()
+        Navegador()
     }
 }

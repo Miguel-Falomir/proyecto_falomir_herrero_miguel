@@ -29,6 +29,7 @@
     <string name="title_resumenPedido">Confirm rent</string>
     <string name="title_formularioPago">Payment data</string>
     <string name="title_resumenPago">Confirm payment</string>
+    <string name="title_back">Back</string>
 
     <!-- BUTTONS TITLES -->
 
