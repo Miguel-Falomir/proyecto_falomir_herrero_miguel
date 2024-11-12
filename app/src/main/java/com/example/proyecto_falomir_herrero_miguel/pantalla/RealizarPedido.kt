@@ -181,7 +181,7 @@ fun RealizarPedido(
             tipo3 -> null
         }
         // GPS //
-        EntradaCheckBox(
+        EntradaSwitch(
             value = inputGPS,
             onValueChange = { inputGPS = !inputGPS },
             texto = R.string.ResumenPedido_HasGPS,

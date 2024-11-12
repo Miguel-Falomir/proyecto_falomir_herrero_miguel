@@ -46,7 +46,7 @@ import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaRealizarPedi
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaResumenPago
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaResumenPedido
 import com.example.proyecto_falomir_herrero_miguel.pantalla.RealizarPedido
-import com.example.proyecto_falomir_herrero_miguel.ui.viewmodel.VehicleViewModel
+import com.example.proyecto_falomir_herrero_miguel.ui.viewmodel.MainViewModel
 
 // LISTA PANTALLAS --------------------------------------------------
 
@@ -89,7 +89,7 @@ fun Arranque(modifier: Modifier = Modifier) {
 @Composable
 fun Navegador(
     navController: NavHostController = rememberNavController(),
-    viewModel: VehicleViewModel = viewModel(),
+    viewModel: MainViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
     // Guardar pila de retroceso
@@ -114,7 +114,7 @@ fun Navegador(
         }
     ) { innerPadding ->
         // Guardar estado del objeto actual
-        val uiState by viewModel.uiState.collectAsState()
+        // val uiState by viewModel.uiState.collectAsState()
 
         // 'navController' gestiona la navegacion entre pantallas.
         // 'navHost' alberga la pantalla actual, en la que se encuentra el usuario al momento.

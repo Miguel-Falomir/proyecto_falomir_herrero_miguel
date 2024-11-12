@@ -46,7 +46,7 @@ fun ResumenPedido(
     modifier: Modifier = Modifier
 ){
     // variables internas //
-    val rentUIState: RentUIState = Data().RentList()[1]
+    val rentUIState: RentUIState = Data().RentList()[0]
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()

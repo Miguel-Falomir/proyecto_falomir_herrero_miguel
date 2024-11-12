@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -177,6 +178,31 @@ fun EntradaCheckBox(
             } else {
                 stringResource(R.string.Check_N)
             }
+        )
+    }
+}
+
+// METODO FILA ENTRADA SWITCH ----------------------------------------
+
+@Composable
+fun EntradaSwitch(
+    onValueChange: (Boolean) -> Unit,
+    value: Boolean,
+    texto: Int,
+    modifier: Modifier = Modifier
+){
+    Row (
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text(
+            text = stringResource(texto),
+            fontFamily = One,
+            modifier = Modifier.weight(1F)
+        )
+        Switch(
+            checked = value,
+            onCheckedChange = onValueChange
         )
     }
 }
