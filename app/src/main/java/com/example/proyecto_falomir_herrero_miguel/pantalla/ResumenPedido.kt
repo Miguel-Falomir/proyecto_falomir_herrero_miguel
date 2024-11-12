@@ -18,9 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
-import com.example.proyecto_falomir_herrero_miguel.model.BikeUIState
-import com.example.proyecto_falomir_herrero_miguel.model.CarUIState
-import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
+import com.example.proyecto_falomir_herrero_miguel.model.Bike
+import com.example.proyecto_falomir_herrero_miguel.model.Car
+import com.example.proyecto_falomir_herrero_miguel.model.Rent
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -46,7 +46,7 @@ fun ResumenPedido(
     modifier: Modifier = Modifier
 ){
     // variables internas //
-    val rentUIState: RentUIState = Data().RentList()[0]
+    val rent: Rent = Data().RentList()[0]
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()
@@ -54,31 +54,31 @@ fun ResumenPedido(
         // tipo vehiculo //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Vehicle),
-            dato = rentUIState.vehicleUIState.brand + " " + rentUIState.vehicleUIState.model,
+            dato = rent.vehicle.brand + " " + rent.vehicle.model,
             modifier = Modifier.padding(20.dp)
         )
         // nombre vehiculo //
         FilaDatoAuxiliar(
             texto = stringResource(R.string.blankSpace),
-            dato = when (rentUIState.vehicleUIState) {
-                is CarUIState -> stringResource(R.string.vehicle_type1)
-                is BikeUIState -> stringResource(R.string.vehicle_type2)
+            dato = when (rent.vehicle) {
+                is Car -> stringResource(R.string.vehicle_type1)
+                is Bike -> stringResource(R.string.vehicle_type2)
                 else -> stringResource(R.string.vehicle_type3)
             },
             modifier = Modifier.padding(20.dp)
         )
         // atributo concreto de cada vehiculo //
-        when (rentUIState.vehicleUIState) {
-            is CarUIState ->
+        when (rent.vehicle) {
+            is Car ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Fuel),
-                    dato = rentUIState.vehicleUIState.fuel,
+                    dato = rent.vehicle.fuel,
                     modifier = Modifier.padding(20.dp)
                 )
-            is BikeUIState ->
+            is Bike ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Size),
-                    dato = rentUIState.vehicleUIState.size,
+                    dato = rent.vehicle.size,
                     modifier = Modifier.padding(20.dp)
                 )
             else -> null
@@ -86,25 +86,25 @@ fun ResumenPedido(
         // GPS //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_HasGPS),
-            dato = rentUIState.vehicleUIState.hasGPS.toString(),
+            dato = rent.vehicle.hasGPS.toString(),
             modifier = Modifier.padding(20.dp)
         )
         // fecha //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Date),
-            dato = rentUIState.date,
+            dato = rent.date,
             modifier = Modifier.padding(20.dp)
         )
         // alquiler //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_RentDays),
-            dato = rentUIState.rentDays + " " + stringResource(R.string.ResumenPedido_Time),
+            dato = rent.rentDays + " " + stringResource(R.string.ResumenPedido_Time),
             modifier = Modifier.padding(20.dp)
         )
         // total //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Total),
-            dato = rentUIState.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
+            dato = rent.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //

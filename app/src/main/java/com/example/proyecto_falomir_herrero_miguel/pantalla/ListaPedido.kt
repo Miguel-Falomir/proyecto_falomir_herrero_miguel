@@ -34,10 +34,10 @@ import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
-import com.example.proyecto_falomir_herrero_miguel.model.BikeUIState
-import com.example.proyecto_falomir_herrero_miguel.model.CarUIState
-import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
-import com.example.proyecto_falomir_herrero_miguel.model.ScooterUIState
+import com.example.proyecto_falomir_herrero_miguel.model.Bike
+import com.example.proyecto_falomir_herrero_miguel.model.Car
+import com.example.proyecto_falomir_herrero_miguel.model.Rent
+import com.example.proyecto_falomir_herrero_miguel.model.Scooter
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -49,7 +49,7 @@ fun PantallaListaPedidos(modifier: Modifier = Modifier){
 // METODO COLUMNA PEDIDOS -------------------------------------------
 
 @Composable
-fun ColumnaPedidos (data: List<RentUIState>, modifier: Modifier = Modifier) {
+fun ColumnaPedidos (data: List<Rent>, modifier: Modifier = Modifier) {
     LazyColumn (modifier = modifier) {
         items(data) { token ->
             CartaPedido(token, modifier)
@@ -60,7 +60,7 @@ fun ColumnaPedidos (data: List<RentUIState>, modifier: Modifier = Modifier) {
 // METODO CARTA PEDIDO ----------------------------------------------
 
 @Composable
-fun CartaPedido (token: RentUIState, modifier: Modifier = Modifier) {
+fun CartaPedido (token: Rent, modifier: Modifier = Modifier) {
     // variables internas //
     var binario: Boolean by remember { mutableStateOf( false ) }
 
@@ -85,13 +85,13 @@ fun CartaPedido (token: RentUIState, modifier: Modifier = Modifier) {
             */
             // Imprimir nombre objeto //
             Text(
-                text = token.vehicleUIState.brand,
+                text = token.vehicle.brand,
                 modifier = Modifier.padding(start = 20.dp),
                 style = MaterialTheme.typography.headlineSmall,
             )
             Text(" ")
             Text(
-                text = token.vehicleUIState.model,
+                text = token.vehicle.model,
                 modifier = Modifier,
                 style = MaterialTheme.typography.headlineSmall,
             )
@@ -105,10 +105,10 @@ fun CartaPedido (token: RentUIState, modifier: Modifier = Modifier) {
             )
         }
         if (binario) {
-            when (token.vehicleUIState) {
-                is CarUIState -> DetallesCar(token, token.vehicleUIState, modifier)
-                is BikeUIState -> DetallesBike(token, token.vehicleUIState, modifier)
-                is ScooterUIState -> DetallesScooter(token, token.vehicleUIState, modifier)
+            when (token.vehicle) {
+                is Car -> DetallesCar(token, token.vehicle, modifier)
+                is Bike -> DetallesBike(token, token.vehicle, modifier)
+                is Scooter -> DetallesScooter(token, token.vehicle, modifier)
                 else -> Text(text = stringResource(R.string.ClassError))
             }
         }
@@ -148,7 +148,7 @@ fun IconoExpansible(
 // METODO DETALLES PEDIDO (CAR) -------------------------------------
 
 @Composable
-fun DetallesCar(rentUIState: RentUIState, carUIState: CarUIState, modifier: Modifier = Modifier){
+fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(20.dp)
     ){
@@ -161,7 +161,7 @@ fun DetallesCar(rentUIState: RentUIState, carUIState: CarUIState, modifier: Modi
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(carUIState.hasGPS) {
+                text = if(car.hasGPS) {
                     stringResource(R.string.Check_Y)
                 } else {
                     stringResource(R.string.Check_Y)
@@ -177,7 +177,7 @@ fun DetallesCar(rentUIState: RentUIState, carUIState: CarUIState, modifier: Modi
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = carUIState.fuel
+                text = car.fuel
             )
         }
         // mostrar fecha
@@ -189,7 +189,7 @@ fun DetallesCar(rentUIState: RentUIState, carUIState: CarUIState, modifier: Modi
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rentUIState.date
+                text = rent.date
             )
         }
         // mostrar dias
@@ -201,7 +201,7 @@ fun DetallesCar(rentUIState: RentUIState, carUIState: CarUIState, modifier: Modi
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rentUIState.rentDays
+                text = rent.rentDays
             )
             Text(
                 text = " " + stringResource(R.string.ResumenPedido_Time)
@@ -216,7 +216,7 @@ fun DetallesCar(rentUIState: RentUIState, carUIState: CarUIState, modifier: Modi
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rentUIState.price.toString()
+                text = rent.price.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Coin)
@@ -228,7 +228,7 @@ fun DetallesCar(rentUIState: RentUIState, carUIState: CarUIState, modifier: Modi
 // METODO DETALLES PEDIDO (BIKE) ------------------------------------
 
 @Composable
-fun DetallesBike(rentUIState: RentUIState, bikeUIState: BikeUIState, modifier: Modifier = Modifier){
+fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(20.dp)
     ){
@@ -241,7 +241,7 @@ fun DetallesBike(rentUIState: RentUIState, bikeUIState: BikeUIState, modifier: M
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(bikeUIState.hasGPS) {
+                text = if(bike.hasGPS) {
                     stringResource(R.string.Check_Y)
                 } else {
                     stringResource(R.string.Check_N)
@@ -257,7 +257,7 @@ fun DetallesBike(rentUIState: RentUIState, bikeUIState: BikeUIState, modifier: M
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = bikeUIState.size
+                text = bike.size
             )
         }
         // mostrar fecha
@@ -269,7 +269,7 @@ fun DetallesBike(rentUIState: RentUIState, bikeUIState: BikeUIState, modifier: M
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rentUIState.date
+                text = rent.date
             )
         }
         // mostrar dias
@@ -281,7 +281,7 @@ fun DetallesBike(rentUIState: RentUIState, bikeUIState: BikeUIState, modifier: M
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rentUIState.rentDays
+                text = rent.rentDays
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Time)
@@ -296,7 +296,7 @@ fun DetallesBike(rentUIState: RentUIState, bikeUIState: BikeUIState, modifier: M
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rentUIState.price.toString()
+                text = rent.price.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Coin)
@@ -308,7 +308,7 @@ fun DetallesBike(rentUIState: RentUIState, bikeUIState: BikeUIState, modifier: M
 // METODO DETALLES PEDIDO (SCOOTER) ---------------------------------
 
 @Composable
-fun DetallesScooter(rentUIState: RentUIState, scooterUIState: ScooterUIState, modifier: Modifier = Modifier){
+fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(20.dp)
     ){
@@ -321,7 +321,7 @@ fun DetallesScooter(rentUIState: RentUIState, scooterUIState: ScooterUIState, mo
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = if(scooterUIState.hasGPS) {
+                text = if(scooter.hasGPS) {
                     stringResource(R.string.Check_Y)
                 } else {
                     stringResource(R.string.Check_N)
@@ -337,7 +337,7 @@ fun DetallesScooter(rentUIState: RentUIState, scooterUIState: ScooterUIState, mo
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rentUIState.date
+                text = rent.date
             )
         }
         // mostrar dias
@@ -349,7 +349,7 @@ fun DetallesScooter(rentUIState: RentUIState, scooterUIState: ScooterUIState, mo
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rentUIState.rentDays
+                text = rent.rentDays
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Time)
@@ -364,7 +364,7 @@ fun DetallesScooter(rentUIState: RentUIState, scooterUIState: ScooterUIState, mo
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rentUIState.price.toString()
+                text = rent.price.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Coin)

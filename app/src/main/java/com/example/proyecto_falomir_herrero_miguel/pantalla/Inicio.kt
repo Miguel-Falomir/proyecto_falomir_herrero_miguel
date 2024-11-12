@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
-import com.example.proyecto_falomir_herrero_miguel.model.UserUIState
+import com.example.proyecto_falomir_herrero_miguel.model.User
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -46,7 +46,7 @@ fun PantallaInicio(
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         CartaUser(
-            userUIState = Data().UserDemo(),
+            user = Data().UserDemo(),
             color = Color.LightGray,
             modifier = modifier
         )
@@ -78,7 +78,7 @@ fun PantallaInicio(
 }
 
 @Composable
-fun CartaUser(userUIState: UserUIState, color: Color, modifier: Modifier = Modifier){
+fun CartaUser(user: User, color: Color, modifier: Modifier = Modifier){
     Card (
         modifier = Modifier.fillMaxWidth(),
         shape = RectangleShape,
@@ -89,14 +89,14 @@ fun CartaUser(userUIState: UserUIState, color: Color, modifier: Modifier = Modif
             disabledContentColor = Color.Unspecified
         )
     ){
-        DatosUser(userUIState, modifier)
+        DatosUser(user, modifier)
     }
 }
 
 
 
 @Composable
-fun DatosUser(userUIState: UserUIState, modifier: Modifier = Modifier){
+fun DatosUser(user: User, modifier: Modifier = Modifier){
     Column (
         modifier = Modifier.padding(22.dp)
     ){
@@ -108,7 +108,7 @@ fun DatosUser(userUIState: UserUIState, modifier: Modifier = Modifier){
                 contentDescription = null
             )
             Text(
-                text = userUIState.name,
+                text = user.name,
                 modifier = Modifier.padding(5.dp, 0.dp)
             )
         }
@@ -119,7 +119,7 @@ fun DatosUser(userUIState: UserUIState, modifier: Modifier = Modifier){
                 modifier = Modifier.width(24.dp)
             )
             Text(
-                text = userUIState.surnames,
+                text = user.surnames,
                 modifier = Modifier.padding(5.dp, 0.dp)
             )
         }
@@ -131,7 +131,7 @@ fun DatosUser(userUIState: UserUIState, modifier: Modifier = Modifier){
                 contentDescription = null
             )
             Text(
-                text = userUIState.email,
+                text = user.email,
                 modifier = Modifier.padding(5.dp, 0.dp)
             )
         }
@@ -143,7 +143,7 @@ fun DatosUser(userUIState: UserUIState, modifier: Modifier = Modifier){
                 contentDescription = null
             )
             Text(
-                text = userUIState.phone,
+                text = user.phone,
                 modifier = Modifier.padding(5.dp, 0.dp)
             )
         }

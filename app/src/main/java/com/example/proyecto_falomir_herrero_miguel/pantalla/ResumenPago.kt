@@ -18,9 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
-import com.example.proyecto_falomir_herrero_miguel.model.BikeUIState
-import com.example.proyecto_falomir_herrero_miguel.model.CarUIState
-import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
+import com.example.proyecto_falomir_herrero_miguel.model.Bike
+import com.example.proyecto_falomir_herrero_miguel.model.Car
+import com.example.proyecto_falomir_herrero_miguel.model.Rent
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -46,7 +46,7 @@ fun ResumenPago(
     modifier: Modifier = Modifier
 ){
     // variables internas //
-    val rentUIState: RentUIState = Data().RentList()[0]
+    val rent: Rent = Data().RentList()[0]
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()
@@ -54,21 +54,21 @@ fun ResumenPago(
         // Ingreso //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Income),
-            dato = rentUIState.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
+            dato = rent.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
             modifier = Modifier.padding(20.dp)
         )
         // fecha //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Date),
-            dato = rentUIState.date,
+            dato = rent.date,
             modifier = Modifier.padding(20.dp)
         )
         // Concepto //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Concept),
-            dato = when (rentUIState.vehicleUIState) {
-                is CarUIState -> stringResource(R.string.vehicle_type1)
-                is BikeUIState -> stringResource(R.string.vehicle_type2)
+            dato = when (rent.vehicle) {
+                is Car -> stringResource(R.string.vehicle_type1)
+                is Bike -> stringResource(R.string.vehicle_type2)
                 else -> stringResource(R.string.vehicle_type3)
             } + " " + stringResource(R.string.ResumenPago_Rent),
             modifier = Modifier.padding(20.dp)
@@ -76,13 +76,13 @@ fun ResumenPago(
         // Tarjeta //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Card),
-            dato = rentUIState.userUIState.paycardUIState.number,
+            dato = rent.user.paycard.number,
             modifier = Modifier.padding(20.dp)
         )
         // Correo //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Email),
-            dato = rentUIState.userUIState.email,
+            dato = rent.user.email,
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //
