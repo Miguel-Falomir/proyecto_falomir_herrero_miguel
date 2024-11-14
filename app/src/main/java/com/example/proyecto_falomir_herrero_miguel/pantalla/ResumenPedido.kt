@@ -21,6 +21,7 @@ import com.example.proyecto_falomir_herrero_miguel.data.Data
 import com.example.proyecto_falomir_herrero_miguel.model.Bike
 import com.example.proyecto_falomir_herrero_miguel.model.Car
 import com.example.proyecto_falomir_herrero_miguel.model.Rent
+import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -28,11 +29,13 @@ import com.example.proyecto_falomir_herrero_miguel.model.Rent
 fun PantallaResumenPedido(
     onAcceptButton: () -> Unit,
     onCancelButton: () -> Unit,
+    rentState: RentUIState,
     modifier: Modifier = Modifier
 ){
     ResumenPedido(
         onAcceptButton,
         onCancelButton,
+        rentState = rentState,
         modifier = modifier
     )
 }
@@ -43,42 +46,45 @@ fun PantallaResumenPedido(
 fun ResumenPedido(
     onAcceptButton: () -> Unit,
     onCancelButton: () -> Unit,
+    rentState: RentUIState,
     modifier: Modifier = Modifier
 ){
-    // variables internas //
-    val rent: Rent = Data().RentList()[0]
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()
     ){
-        // tipo vehiculo //
+        // nombre vehiculo //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Vehicle),
-            dato = rent.vehicle.brand + " " + rent.vehicle.model,
+            dato = rentState.vehicleBrand + " " + rentState.vehicleModel,
             modifier = Modifier.padding(20.dp)
         )
-        // nombre vehiculo //
+        // tipo vehiculo //
         FilaDatoAuxiliar(
             texto = stringResource(R.string.blankSpace),
-            dato = when (rent.vehicle) {
-                is Car -> stringResource(R.string.vehicle_type1)
-                is Bike -> stringResource(R.string.vehicle_type2)
+            dato = when (rentState.vehicleType){
+                "0" -> stringResource(R.string.vehicle_type1)
+                "1" -> stringResource(R.string.vehicle_type2)
                 else -> stringResource(R.string.vehicle_type3)
             },
             modifier = Modifier.padding(20.dp)
         )
         // atributo concreto de cada vehiculo //
-        when (rent.vehicle) {
-            is Car ->
+        when (rentState.vehicleType) {
+            "0" ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Fuel),
-                    dato = rent.vehicle.fuel,
+                    dato = when (rentState.vehicleFuel) {
+                        "0" -> stringResource(R.string.vehicle_fuel1)
+                        "1" -> stringResource(R.string.vehicle_fuel2)
+                        else -> stringResource(R.string.vehicle_fuel3)
+                    },
                     modifier = Modifier.padding(20.dp)
                 )
-            is Bike ->
+            "1" ->
                 FilaSalidaDato(
                     texto = stringResource(R.string.ResumenPedido_Size),
-                    dato = rent.vehicle.size,
+                    dato = rentState.vehicleSize,
                     modifier = Modifier.padding(20.dp)
                 )
             else -> null
@@ -86,32 +92,37 @@ fun ResumenPedido(
         // GPS //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_HasGPS),
-            dato = rent.vehicle.hasGPS.toString(),
+            dato = when (rentState.vehicleGPS){
+                true -> stringResource(R.string.Check_Y)
+                else -> stringResource(R.string.Check_N)
+            },
             modifier = Modifier.padding(20.dp)
         )
         // fecha //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Date),
-            dato = rent.date,
+            dato = rentState.rentDate,
             modifier = Modifier.padding(20.dp)
         )
         // alquiler //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_RentDays),
-            dato = rent.rentDays + " " + stringResource(R.string.ResumenPedido_Time),
+            dato = rentState.rentDays + " " + stringResource(R.string.ResumenPedido_Time),
             modifier = Modifier.padding(20.dp)
         )
         // total //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Total),
-            dato = rent.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
+            dato = rentState.rentPrice + " " + stringResource(R.string.ResumenPedido_Coin),
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //
         Spacer(modifier = Modifier.weight(1F))
         // botones aceptar y cancelar //
         Row (
-            modifier = Modifier.padding(20.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(20.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ){
             Boton(
@@ -136,7 +147,17 @@ fun ResumenPedidoPreview() {
     AppTheme {
         PantallaResumenPedido(
             onCancelButton = {},
-            onAcceptButton = {}
+            onAcceptButton = {},
+            rentState = RentUIState(
+                vehicleType = "0",
+                vehicleBrand = "Seat",
+                vehicleModel = "Ibiza",
+                vehicleGPS = true,
+                vehicleFuel = "0",
+                rentDate = "2024-10-10",
+                rentDays = "2",
+                rentPrice = "100.00"
+            )
         )
     }
 }

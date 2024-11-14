@@ -20,7 +20,9 @@ import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
 import com.example.proyecto_falomir_herrero_miguel.model.Bike
 import com.example.proyecto_falomir_herrero_miguel.model.Car
+import com.example.proyecto_falomir_herrero_miguel.model.PaymentUIState
 import com.example.proyecto_falomir_herrero_miguel.model.Rent
+import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -28,11 +30,15 @@ import com.example.proyecto_falomir_herrero_miguel.model.Rent
 fun PantallaResumenPago(
     onCancelButton: () -> Unit,
     onAcceptButton: () -> Unit,
+    rentState: RentUIState,
+    payState: PaymentUIState,
     modifier: Modifier = Modifier
 ){
     ResumenPago(
         onCancelButton,
         onAcceptButton,
+        rentState = rentState,
+        payState = payState,
         modifier = modifier
     )
 }
@@ -43,6 +49,8 @@ fun PantallaResumenPago(
 fun ResumenPago(
     onCancelButton: () -> Unit,
     onAcceptButton: () -> Unit,
+    rentState: RentUIState,
+    payState: PaymentUIState,
     modifier: Modifier = Modifier
 ){
     // variables internas //
@@ -66,9 +74,9 @@ fun ResumenPago(
         // Concepto //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Concept),
-            dato = when (rent.vehicle) {
-                is Car -> stringResource(R.string.vehicle_type1)
-                is Bike -> stringResource(R.string.vehicle_type2)
+            dato = when (rentState.vehicleType) {
+                "0" -> stringResource(R.string.vehicle_type1)
+                "1" -> stringResource(R.string.vehicle_type2)
                 else -> stringResource(R.string.vehicle_type3)
             } + " " + stringResource(R.string.ResumenPago_Rent),
             modifier = Modifier.padding(20.dp)
@@ -76,7 +84,7 @@ fun ResumenPago(
         // Tarjeta //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Card),
-            dato = rent.user.paycard.number,
+            dato = payState.paycardNumber,
             modifier = Modifier.padding(20.dp)
         )
         // Correo //
@@ -114,7 +122,11 @@ fun ResumenPagoPreview() {
     AppTheme {
         PantallaResumenPago(
             onCancelButton = {},
-            onAcceptButton = {}
+            onAcceptButton = {},
+            rentState = RentUIState(),
+            payState = PaymentUIState(
+                paycardNumber = "1234-5678-1357-2468"
+            )
         )
     }
 }

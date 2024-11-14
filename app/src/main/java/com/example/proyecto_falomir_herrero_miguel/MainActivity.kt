@@ -9,10 +9,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -28,10 +25,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -45,7 +40,6 @@ import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaListaPedidos
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaRealizarPedido
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaResumenPago
 import com.example.proyecto_falomir_herrero_miguel.pantalla.PantallaResumenPedido
-import com.example.proyecto_falomir_herrero_miguel.pantalla.RealizarPedido
 import com.example.proyecto_falomir_herrero_miguel.ui.viewmodel.MainViewModel
 
 // LISTA PANTALLAS --------------------------------------------------
@@ -113,8 +107,9 @@ fun Navegador(
             )
         }
     ) { innerPadding ->
-        // Guardar estado del objeto actual
-        // val uiState by viewModel.uiState.collectAsState()
+        // Guardar estado de objetos actuales
+        val rentState by viewModel.rentUIState.collectAsState()
+        val payState by viewModel.paymentUIState.collectAsState()
 
         // 'navController' gestiona la navegacion entre pantallas.
         // 'navHost' alberga la pantalla actual, en la que se encuentra el usuario al momento.
@@ -141,6 +136,7 @@ fun Navegador(
                 PantallaRealizarPedido(
                     onCancelButton = { navController.navigate(Pantallas.Inicio.name) },
                     onAcceptButton = { navController.navigate(Pantallas.ResumenPedido.name) },
+                    viewModel = viewModel,
                     modifier = Modifier.fillMaxSize()
                 )
             }
@@ -148,6 +144,7 @@ fun Navegador(
                 PantallaResumenPedido(
                     onCancelButton = { navController.navigate(Pantallas.RealizarPedido.name) },
                     onAcceptButton = { navController.navigate(Pantallas.FormularioPago.name) },
+                    rentState = rentState,
                     modifier = Modifier.fillMaxSize()
                 )
             }
@@ -155,6 +152,7 @@ fun Navegador(
                 PantallaFormularioPago(
                     onCancelButton = { navController.navigate(Pantallas.ResumenPedido.name) },
                     onPayButton = { navController.navigate(Pantallas.ResumenPago.name) },
+                    viewModel = viewModel,
                     modifier = Modifier.fillMaxSize()
                 )
             }
@@ -162,6 +160,8 @@ fun Navegador(
                 PantallaResumenPago(
                     onCancelButton = { navController.navigate(Pantallas.FormularioPago.name) },
                     onAcceptButton = { navController.navigate(Pantallas.Inicio.name) },
+                    rentState = rentState,
+                    payState = payState,
                     modifier = Modifier.fillMaxSize()
                 )
             }

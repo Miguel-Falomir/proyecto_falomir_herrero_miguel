@@ -10,21 +10,23 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
+import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
 import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
+import com.example.proyecto_falomir_herrero_miguel.ui.viewmodel.MainViewModel
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -32,11 +34,13 @@ import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
 fun PantallaRealizarPedido(
     onAcceptButton: () -> Unit,
     onCancelButton: () -> Unit,
+    viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ){
     RealizarPedido(
-        onAcceptButton,
-        onCancelButton,
+        onAcceptButton = onAcceptButton,
+        onCancelButton = onCancelButton,
+        viewModel = viewModel,
         modifier = modifier
     )
 }
@@ -47,26 +51,17 @@ fun PantallaRealizarPedido(
 fun RealizarPedido(
     onAcceptButton: () -> Unit,
     onCancelButton: () -> Unit,
+    viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ){
-    // valores internos //
-    val tipo1 = stringResource(R.string.vehicle_type1)
-    val tipo2 = stringResource(R.string.vehicle_type2)
-    val tipo3 = stringResource(R.string.vehicle_type3)
-    val fuel1 = stringResource(R.string.vehicle_fuel1)
-    val fuel2 = stringResource(R.string.vehicle_fuel2)
-    val fuel3 = stringResource(R.string.vehicle_fuel3)
-    val size1 = stringResource(R.string.vehicle_size1)
-    val size2 = stringResource(R.string.vehicle_size2)
-    val size3 = stringResource(R.string.vehicle_size3)
     // variables internas //
-    var inputFecha by remember { mutableStateOf("1970-01-01") }
-    var inputDias by remember { mutableStateOf("1") }
-    var inputTipo by remember { mutableStateOf(tipo1) }
+    var inputFecha by remember { mutableStateOf("") }
+    var inputDias by remember { mutableStateOf("") }
+    var inputTipo by remember { mutableStateOf("") }
     var inputMarca by remember { mutableStateOf("") }
     var inputModelo by remember { mutableStateOf("") }
-    var inputFuel by remember { mutableStateOf(fuel1) }
-    var inputSize by remember { mutableStateOf(size1) }
+    var inputFuel by remember { mutableStateOf("") }
+    var inputSize by remember { mutableStateOf("") }
     var inputGPS by remember { mutableStateOf(false) }
     var precio: Double = calcularAlquiler(
         tipo = inputTipo,
@@ -91,43 +86,74 @@ fun RealizarPedido(
         ){
             Boton(
                 w = 100, h = 40,
-                onClick = { inputTipo = tipo1 },
+                onClick = {
+                    inputTipo = "0"
+                    viewModel.updateVehicleType(inputTipo)
+                    viewModel.updateRentPrice(precio.toString())
+                },
                 texto = R.string.vehicle_type1
             )
             Boton(
                 w = 100, h = 40,
-                onClick = { inputTipo = tipo2 },
+                onClick = {
+                    inputTipo = "1"
+                    viewModel.updateVehicleType(inputTipo)
+                    viewModel.updateRentPrice(precio.toString())
+                },
                 texto = R.string.vehicle_type2
             )
             Boton(
                 w = 100, h = 40,
-                onClick = { inputTipo = tipo3 },
+                onClick = {
+                    inputTipo = "2"
+                    viewModel.updateVehicleType(inputTipo)
+                    viewModel.updateRentPrice(precio.toString())
+                },
                 texto = R.string.vehicle_type3
             )
         }
         // marca //
         EntradaTexto(
             value = inputMarca,
-            onValueChange = { inputMarca = it },
+            onValueChange = {
+                inputMarca = it
+                viewModel.updateVehicleBrand(inputMarca)
+                viewModel.updateRentPrice(precio.toString())
+            },
             texto = R.string.RealizarPedido_Brand,
             modifier = Modifier.padding(20.dp, 10.dp)
         )
         // modelo //
         EntradaTexto(
             value = inputModelo,
-            onValueChange = { inputModelo = it },
+            onValueChange = {
+                inputModelo = it
+                viewModel.updateVehicleModel(inputMarca)
+                viewModel.updateRentPrice(precio.toString())
+            },
             texto = R.string.RealizarPedido_Model,
             modifier = Modifier.padding(20.dp, 10.dp)
         )
+        // GPS //
+        EntradaSwitch(
+            value = inputGPS,
+            onValueChange = {
+                viewModel.updateVehicleGPS(!inputGPS)
+                viewModel.updateRentPrice(precio.toString())
+                inputGPS = !inputGPS
+            },
+            texto = R.string.ResumenPedido_HasGPS,
+            modifier = Modifier.padding(20.dp, 10.dp)
+        )
         // atributo concreto (combustible, cilindrada o nada) //
-        when (inputTipo) {
-            tipo1 ->
+        when (viewModel.uiVehicleType) {
+            "0" ->
                 Text(
                     text = stringResource(R.string.ResumenPedido_Fuel),
                     fontFamily = One,
                     modifier = Modifier.padding(20.dp)
                 )
-            tipo2 ->
+            "1" ->
                 Text(
                     text = stringResource(R.string.ResumenPedido_Size),
                     fontFamily = One,
@@ -135,69 +161,94 @@ fun RealizarPedido(
                 )
             else -> null
         }
-        when (inputTipo) {
-            tipo1 ->
+        when (viewModel.uiVehicleType) {
+            "0" ->
                 Row (
                     modifier = Modifier.padding(20.dp, 10.dp).fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Boton(
                         w = 100, h = 40,
-                        onClick = { inputFuel = fuel1 },
+                        onClick = {
+                            inputFuel = "0"
+                            viewModel.updateVehicleFuel(inputFuel)
+                            viewModel.updateRentPrice(precio.toString())
+                        },
                         texto = R.string.vehicle_fuel1
                     )
                     Boton(
                         w = 100, h = 40,
-                        onClick = { inputFuel = fuel2 },
+                        onClick = {
+                            inputFuel = "1"
+                            viewModel.updateVehicleFuel(inputFuel)
+                            viewModel.updateRentPrice(precio.toString())
+                        },
                         texto = R.string.vehicle_fuel2
                     )
                     Boton(
                         w = 100, h = 40,
-                        onClick = { inputFuel = fuel3 },
+                        onClick = {
+                            inputFuel = "2"
+                            viewModel.updateVehicleFuel(inputFuel)
+                            viewModel.updateRentPrice(precio.toString())
+                        },
                         texto = R.string.vehicle_fuel3
                     )
                 }
-            tipo2 ->
+            "1" ->
                 Row (
                     modifier = Modifier.padding(20.dp, 10.dp).fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Boton(
                         w = 100, h = 40,
-                        onClick = { inputSize = size1 },
+                        onClick = {
+                            inputSize = "2"
+                            viewModel.updateVehicleSize(inputSize)
+                            viewModel.updateRentPrice(precio.toString())
+                        },
                         texto = R.string.vehicle_size1
                     )
                     Boton(
                         w = 100, h = 40,
-                        onClick = { inputSize = size2 },
+                        onClick = {
+                            inputSize = "1"
+                            viewModel.updateVehicleSize(inputSize)
+                            viewModel.updateRentPrice(precio.toString())
+                        },
                         texto = R.string.vehicle_size2
                     )
                     Boton(
                         w = 100, h = 40,
-                        onClick = { inputSize = size3 },
+                        onClick = {
+                            inputSize = "0"
+                            viewModel.updateVehicleSize(inputSize)
+                            viewModel.updateRentPrice(precio.toString())
+                        },
                         texto = R.string.vehicle_size3
                     )
                 }
-            tipo3 -> null
+            else -> null
         }
-        // GPS //
-        EntradaSwitch(
-            value = inputGPS,
-            onValueChange = { inputGPS = !inputGPS },
-            texto = R.string.ResumenPedido_HasGPS,
-            modifier = Modifier.padding(20.dp, 10.dp)
-        )
         // fecha //
         EntradaTexto(
             value = inputFecha,
-            onValueChange = { inputFecha = it },
+            onValueChange = {
+                inputFecha = it
+                viewModel.updateRentDate(inputFecha)
+                viewModel.updateRentPrice(precio.toString())
+            },
             texto = R.string.ResumenPedido_Date,
             modifier = Modifier.padding(20.dp, 10.dp)
         )
         // dias alquiler //
         EntradaNumero(
             value = inputDias,
-            onValueChange = { inputDias = it },
+            onValueChange = {
+                inputDias = it
+                viewModel.updateRentDays(inputDias)
+                viewModel.updateRentPrice(precio.toString())
+            },
             texto = R.string.ResumenPedido_RentDays,
             modifier = Modifier.padding(20.dp, 10.dp)
         )
@@ -243,16 +294,16 @@ fun calcularAlquiler(
     var precio by remember { mutableStateOf(0.0) }
     // definir precio diario //
     when (tipo) {
-        stringResource(R.string.vehicle_type1) ->
+        "0" ->
             precio = when (fuel) {
-                stringResource(R.string.vehicle_fuel1) -> 25.0
-                stringResource(R.string.vehicle_fuel2) -> 20.0
+                "0" -> 25.0
+                "1" -> 20.0
                 else -> 15.0
             }
-        stringResource(R.string.vehicle_type2) ->
+        "1" ->
             precio = when (size) {
-                stringResource(R.string.vehicle_size3) -> 20.0
-                stringResource(R.string.vehicle_size2) -> 15.0
+                "0" -> 20.0
+                "1" -> 15.0
                 else -> 10.0
             }
         else -> precio = 5.0
@@ -273,7 +324,8 @@ fun RealizarPedidoPreview() {
     AppTheme {
         PantallaRealizarPedido(
             onCancelButton = {},
-            onAcceptButton = {}
+            onAcceptButton = {},
+            viewModel = viewModel()
         )
     }
 }
