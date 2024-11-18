@@ -201,7 +201,7 @@ fun DetallesCar(rent: Rent, car: Car, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.rentDays
+                text = rent.rentDays.toString()
             )
             Text(
                 text = " " + stringResource(R.string.ResumenPedido_Time)
@@ -281,7 +281,7 @@ fun DetallesBike(rent: Rent, bike: Bike, modifier: Modifier = Modifier){
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.rentDays
+                text = rent.rentDays.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Time)
@@ -349,7 +349,7 @@ fun DetallesScooter(rent: Rent, scooter: Scooter, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.weight(1F))
             Text(
-                text = rent.rentDays
+                text = rent.rentDays.toString()
             )
             Text(
                 text = stringResource(R.string.ResumenPedido_Time)

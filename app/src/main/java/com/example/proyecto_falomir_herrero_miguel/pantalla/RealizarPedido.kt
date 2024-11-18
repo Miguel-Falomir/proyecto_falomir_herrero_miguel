@@ -63,6 +63,7 @@ fun RealizarPedido(
     var inputFuel by remember { mutableStateOf("") }
     var inputSize by remember { mutableStateOf("") }
     var inputGPS by remember { mutableStateOf(false) }
+    /*
     var precio: Double = calcularAlquiler(
         tipo = inputTipo,
         fuel = inputFuel,
@@ -70,6 +71,8 @@ fun RealizarPedido(
         hasGPS = inputGPS,
         dias = inputDias.toInt()
     )
+     */
+    var precio: Double = 0.0
     // extructura general //
     Column (
         modifier = modifier.fillMaxWidth()

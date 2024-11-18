@@ -22,6 +22,7 @@ import com.example.proyecto_falomir_herrero_miguel.model.Bike
 import com.example.proyecto_falomir_herrero_miguel.model.Car
 import com.example.proyecto_falomir_herrero_miguel.model.Rent
 import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
+import com.example.proyecto_falomir_herrero_miguel.model.Scooter
 
 // METODO INICIAR PANTALLA ------------------------------------------
 
@@ -30,14 +31,12 @@ fun PantallaResumenPago(
     onCancelButton: () -> Unit,
     onAcceptButton: () -> Unit,
     rentState: RentUIState,
-    payState: PaymentUIState,
     modifier: Modifier = Modifier
 ){
     ResumenPago(
         onCancelButton,
         onAcceptButton,
-        rentState = rentState,
-        payState = payState,
+        rentState = RentUIState(),
         modifier = modifier
     )
 }
@@ -49,7 +48,6 @@ fun ResumenPago(
     onCancelButton: () -> Unit,
     onAcceptButton: () -> Unit,
     rentState: RentUIState,
-    payState: PaymentUIState,
     modifier: Modifier = Modifier
 ){
     // variables internas //
@@ -73,23 +71,26 @@ fun ResumenPago(
         // Concepto //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Concept),
-            dato = when (rentState.vehicleType) {
-                "0" -> stringResource(R.string.vehicle_type1)
-                "1" -> stringResource(R.string.vehicle_type2)
-                else -> stringResource(R.string.vehicle_type3)
+            dato = when (rentState.alquiler.vehicle) {
+                is Car -> stringResource(R.string.vehicle_type1)
+                is Bike -> stringResource(R.string.vehicle_type2)
+                is Scooter -> stringResource(R.string.vehicle_type3)
+                else -> stringResource(R.string.ClassError)
             } + " " + stringResource(R.string.ResumenPago_Rent),
             modifier = Modifier.padding(20.dp)
         )
         // Tarjeta //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Card),
-            dato = payState.paycardNumber,
+            // dato = rentState.alquiler.user.paycard.number,
+            dato = "",
             modifier = Modifier.padding(20.dp)
         )
         // Correo //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Email),
-            dato = rent.user.email,
+            // dato = rentState.alquiler.user.email,
+            dato = "",
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //
@@ -122,10 +123,7 @@ fun ResumenPagoPreview() {
         PantallaResumenPago(
             onCancelButton = {},
             onAcceptButton = {},
-            rentState = RentUIState(),
-            payState = PaymentUIState(
-                paycardNumber = "1234-5678-1357-2468"
-            )
+            rentState = RentUIState()
         )
     }
 }

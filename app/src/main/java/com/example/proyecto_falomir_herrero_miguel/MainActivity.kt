@@ -109,7 +109,6 @@ fun Navegador(
     ) { innerPadding ->
         // Guardar estado de objetos actuales
         val rentState by viewModel.rentUIState.collectAsState()
-        val payState by viewModel.paymentUIState.collectAsState()
 
         // 'navController' gestiona la navegacion entre pantallas.
         // 'navHost' alberga la pantalla actual, en la que se encuentra el usuario al momento.
@@ -161,7 +160,6 @@ fun Navegador(
                     onCancelButton = { navController.navigate(Pantallas.FormularioPago.name) },
                     onAcceptButton = { navController.navigate(Pantallas.Inicio.name) },
                     rentState = rentState,
-                    payState = payState,
                     modifier = Modifier.fillMaxSize()
                 )
             }

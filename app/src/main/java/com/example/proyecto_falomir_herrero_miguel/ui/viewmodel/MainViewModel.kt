@@ -69,47 +69,97 @@ class MainViewModel: ViewModel() {
     fun updateVehicleType(input: String){
         uiVehicleType = input
 
+        /*
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 // pendiente //
             )
         }
+         */
     }
 
     fun updateVehicleBrand(input: String){
         uiVehicleBrand = input
 
-        _RentUIState.update { estadoActual ->
-            estadoActual.copy(
-                alquiler = Rent(
-                    vehicle = Vehicle(brand = uiVehicleBrand)
+        when (uiVehicleType) {
+            "0" -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Car(brand = uiVehicleBrand)
+                    )
                 )
-            )
+            }
+            "1" -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Bike(brand = uiVehicleBrand)
+                    )
+                )
+            }
+            else -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Scooter(brand = uiVehicleBrand)
+                    )
+                )
+            }
         }
     }
 
     fun updateVehicleModel(input: String){
         uiVehicleModel = input
 
-        _RentUIState.update { estadoActual ->
-
-            estadoActual.copy(
-                alquiler = Rent(
-                    vehicle = Vehicle(model = uiVehicleModel)
-                )
-            )
+        when (uiVehicleType) {
+            "0" -> _RentUIState.update { estadoActual ->
+                    estadoActual.copy(
+                        alquiler = Rent(
+                            vehicle = Car(model = uiVehicleModel)
+                        )
+                    )
+                }
+            "1" -> _RentUIState.update { estadoActual ->
+                    estadoActual.copy(
+                        alquiler = Rent(
+                            vehicle = Bike(model = uiVehicleModel)
+                        )
+                    )
+                }
+            else -> _RentUIState.update { estadoActual ->
+                    estadoActual.copy(
+                        alquiler = Rent(
+                            vehicle = Scooter(model = uiVehicleModel)
+                        )
+                    )
+                }
         }
+
     }
 
     fun updateVehicleGPS(input: Boolean){
         uiVehicleGPS= input
 
-        _RentUIState.update { estadoActual ->
-            estadoActual.copy(
-                alquiler = Rent(
-                    vehicle = Vehicle(hasGPS = uiVehicleGPS)
+        when (uiVehicleType) {
+            "0" -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Car(hasGPS = uiVehicleGPS)
+                    )
                 )
-            )
+            }
+            "1" -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Bike(hasGPS = uiVehicleGPS)
+                    )
+                )
+            }
+            else -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Scooter(hasGPS = uiVehicleGPS)
+                    )
+                )
+            }
         }
     }
 
@@ -155,7 +205,7 @@ class MainViewModel: ViewModel() {
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 alquiler = Rent(
-                    rentDays = uiRentDays
+                    rentDays = uiRentDays.toInt()
                 )
             )
         }

@@ -77,63 +77,63 @@ class Data {
     fun RentList(): List<Rent> = listOf(
         Rent(
             "2024-10-03",
-            "2",
+            2,
             100.00,
             VehicleList()[0],
             UserDemo()
         ),
         Rent(
             "2024-10-03",
-            "2",
+            2,
             100.00,
             VehicleList()[1],
             UserDemo()
         ),
         Rent(
             "2024-10-03",
-            "2",
+            2,
             100.00,
             VehicleList()[2],
             UserDemo()
         ),
         Rent(
             "2024-10-03",
-            "2",
+            2,
             100.00,
             VehicleList()[2],
             UserDemo()
         ),
         Rent(
             "2024-11-01",
-            "2",
+            2,
             100.00,
             VehicleList()[1],
             UserDemo()
         ),
         Rent(
             "2024-10-03",
-            "2",
+            2,
             100.00,
             VehicleList()[2],
             UserDemo()
         ),
         Rent(
             "2024-10-03",
-            "2",
+            2,
             100.00,
             VehicleList()[0],
             UserDemo()
         ),
         Rent(
             "2024-10-03",
-            "2",
+            2,
             100.00,
             VehicleList()[0],
             UserDemo()
         ),
         Rent(
             "2024-10-03",
-            "2",
+            2,
             100.00,
             VehicleList()[2],
             UserDemo()
