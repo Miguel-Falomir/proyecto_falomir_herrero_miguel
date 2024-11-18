@@ -4,8 +4,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.proyecto_falomir_herrero_miguel.model.PaymentUIState
+import com.example.proyecto_falomir_herrero_miguel.model.Paycard
 import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
+import com.example.proyecto_falomir_herrero_miguel.model.Vehicle
+import com.example.proyecto_falomir_herrero_miguel.model.Car
+import com.example.proyecto_falomir_herrero_miguel.model.Bike
+import com.example.proyecto_falomir_herrero_miguel.model.Rent
+import com.example.proyecto_falomir_herrero_miguel.model.Scooter
+import com.example.proyecto_falomir_herrero_miguel.model.User
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,11 +22,6 @@ class MainViewModel: ViewModel() {
     private val _RentUIState = MutableStateFlow(RentUIState())
     // copia variable para mostrar datos
     val rentUIState: StateFlow<RentUIState> = _RentUIState.asStateFlow()
-
-    // variable 'Payment' para guardar datos
-    private val _PaymentUIState = MutableStateFlow(PaymentUIState())
-    // copia variable para mostrar datos
-    val paymentUIState: StateFlow<PaymentUIState> = _PaymentUIState.asStateFlow()
 
     // variables //
 
@@ -70,7 +71,7 @@ class MainViewModel: ViewModel() {
 
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                vehicleType = uiVehicleType
+                // pendiente //
             )
         }
     }
@@ -80,7 +81,9 @@ class MainViewModel: ViewModel() {
 
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                vehicleBrand = uiVehicleBrand
+                alquiler = Rent(
+                    vehicle = Vehicle(brand = uiVehicleBrand)
+                )
             )
         }
     }
@@ -89,8 +92,11 @@ class MainViewModel: ViewModel() {
         uiVehicleModel = input
 
         _RentUIState.update { estadoActual ->
+
             estadoActual.copy(
-                vehicleModel = uiVehicleModel
+                alquiler = Rent(
+                    vehicle = Vehicle(model = uiVehicleModel)
+                )
             )
         }
     }
@@ -100,7 +106,9 @@ class MainViewModel: ViewModel() {
 
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                vehicleGPS = uiVehicleGPS
+                alquiler = Rent(
+                    vehicle = Vehicle(hasGPS = uiVehicleGPS)
+                )
             )
         }
     }
@@ -110,7 +118,9 @@ class MainViewModel: ViewModel() {
 
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                vehicleFuel = uiVehicleFuel
+                alquiler = Rent(
+                    vehicle = Car(fuel = uiVehicleFuel)
+                )
             )
         }
     }
@@ -120,7 +130,9 @@ class MainViewModel: ViewModel() {
 
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                vehicleBrand = uiVehicleSize
+                alquiler = Rent(
+                    vehicle = Bike(size = uiVehicleSize)
+                )
             )
         }
     }
@@ -130,7 +142,9 @@ class MainViewModel: ViewModel() {
 
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                rentDate = uiRentDate
+                alquiler = Rent(
+                    date = uiRentDate
+                )
             )
         }
     }
@@ -140,7 +154,9 @@ class MainViewModel: ViewModel() {
 
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                rentDays = uiRentDays
+                alquiler = Rent(
+                    rentDays = uiRentDays
+                )
             )
         }
     }
@@ -150,7 +166,9 @@ class MainViewModel: ViewModel() {
 
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                rentPrice = uiRentPrice
+                alquiler = Rent(
+                    price = uiRentPrice.toDouble()
+                )
             )
         }
     }
@@ -158,9 +176,15 @@ class MainViewModel: ViewModel() {
     fun updatePaycardType(input: String){
         uiPaycardType = input
 
-        _PaymentUIState.update { estadoActual ->
+        _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                paycardType = uiPaycardType
+                alquiler = Rent(
+                    user = User(
+                        paycard = Paycard(
+                            type = uiPaycardType
+                        )
+                    )
+                )
             )
         }
     }
@@ -168,9 +192,15 @@ class MainViewModel: ViewModel() {
     fun updatePaycardNumber(input: String){
         uiPaycardNumber = input
 
-        _PaymentUIState.update { estadoActual ->
+        _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                paycardNumber = uiPaycardNumber
+                alquiler = Rent(
+                    user = User(
+                        paycard = Paycard(
+                            number = uiPaycardNumber
+                        )
+                    )
+                )
             )
         }
     }
@@ -178,9 +208,15 @@ class MainViewModel: ViewModel() {
     fun updatePaycardExpiration(input: String){
         uiPaycardExpiration = input
 
-        _PaymentUIState.update { estadoActual ->
+        _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                paycardExpiration = uiPaycardExpiration
+                alquiler = Rent(
+                    user = User(
+                        paycard = Paycard(
+                            date = uiPaycardExpiration
+                        )
+                    )
+                )
             )
         }
     }
@@ -188,9 +224,15 @@ class MainViewModel: ViewModel() {
     fun updatePaycardCode(input: String){
         uiPaycardCode = input
 
-        _PaymentUIState.update { estadoActual ->
+        _RentUIState.update { estadoActual ->
             estadoActual.copy(
-                paycardCode = uiPaycardCode
+                alquiler = Rent(
+                    user = User(
+                        paycard = Paycard(
+                            code = uiPaycardCode
+                        )
+                    )
+                )
             )
         }
     }

@@ -20,7 +20,6 @@ import com.example.proyecto_falomir_herrero_miguel.R
 import com.example.proyecto_falomir_herrero_miguel.data.Data
 import com.example.proyecto_falomir_herrero_miguel.model.Bike
 import com.example.proyecto_falomir_herrero_miguel.model.Car
-import com.example.proyecto_falomir_herrero_miguel.model.PaymentUIState
 import com.example.proyecto_falomir_herrero_miguel.model.Rent
 import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
 
