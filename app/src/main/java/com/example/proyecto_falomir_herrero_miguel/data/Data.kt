@@ -28,8 +28,7 @@ class Data {
         surnames = "Garrido Nemesio",
         email = "suzieGN@email.blend",
         phone = "(+34) 555 123 456",
-        profileImageId = R.drawable.profile_image,
-        paycard = VisaCard()
+        profileImageId = R.drawable.profile_image
     )
     // combustibles coches
     fun CarFuels() : List<String> = listOf(

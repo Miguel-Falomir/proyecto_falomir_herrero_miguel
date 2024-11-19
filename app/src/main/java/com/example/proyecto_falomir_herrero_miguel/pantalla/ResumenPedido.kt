@@ -33,23 +33,6 @@ fun PantallaResumenPedido(
     rentState: RentUIState,
     modifier: Modifier = Modifier
 ){
-    ResumenPedido(
-        onAcceptButton,
-        onCancelButton,
-        rentState = rentState,
-        modifier = modifier
-    )
-}
-
-// M -
-
-@Composable
-fun ResumenPedido(
-    onAcceptButton: () -> Unit,
-    onCancelButton: () -> Unit,
-    rentState: RentUIState,
-    modifier: Modifier = Modifier
-){
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()

@@ -74,7 +74,7 @@ fun FormularioPago(
                 w = 100, h = 60,
                 onClick = {
                     tipoTarjeta = "0"
-                    viewModel.updatePaycardType(tipoTarjeta)
+                    viewModel.insertPaycardType(tipoTarjeta)
                 },
                 texto = R.string.creditCard_type1
             )
@@ -82,7 +82,7 @@ fun FormularioPago(
                 w = 100, h = 60,
                 onClick = {
                     tipoTarjeta = "1"
-                    viewModel.updatePaycardType(tipoTarjeta)
+                    viewModel.insertPaycardType(tipoTarjeta)
                 },
                 texto = R.string.creditCard_type2
             )
@@ -90,7 +90,7 @@ fun FormularioPago(
                 w = 100, h = 60,
                 onClick = {
                     tipoTarjeta = "2"
-                    viewModel.updatePaycardType(tipoTarjeta)
+                    viewModel.insertPaycardType(tipoTarjeta)
                 },
                 texto = R.string.creditCard_type3
             )
@@ -100,7 +100,7 @@ fun FormularioPago(
             value = numeroTarjeta,
             onValueChange = {
                 numeroTarjeta = it
-                viewModel.updatePaycardNumber(numeroTarjeta)
+                viewModel.insertPaycardNumber(numeroTarjeta)
             },
             texto = R.string.FormularioPago_CreditNumber,
             modifier = Modifier.padding(20.dp)
@@ -109,7 +109,7 @@ fun FormularioPago(
             value = fechaTarjeta,
             onValueChange = {
                 fechaTarjeta = it
-                viewModel.updateRentDate(fechaTarjeta)
+                viewModel.insertRentDate(fechaTarjeta)
             },
             texto = R.string.FormularioPago_CreditDate,
             modifier = Modifier.padding(20.dp)
@@ -118,7 +118,7 @@ fun FormularioPago(
             value = codigoTarjeta,
             onValueChange = {
                 codigoTarjeta = it
-                viewModel.updatePaycardCode(codigoTarjeta)
+                viewModel.insertPaycardCode(codigoTarjeta)
             },
             texto = R.string.FormularioPago_CreditCode,
             modifier = Modifier.padding(20.dp)

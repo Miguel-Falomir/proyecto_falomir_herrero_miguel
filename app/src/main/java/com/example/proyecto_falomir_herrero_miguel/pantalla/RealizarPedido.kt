@@ -20,11 +20,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.compose.AppTheme
 import com.example.proyecto_falomir_herrero_miguel.R
-import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
+import com.example.proyecto_falomir_herrero_miguel.model.Rent
 import com.example.proyecto_falomir_herrero_miguel.ui.theme.One
 import com.example.proyecto_falomir_herrero_miguel.ui.viewmodel.MainViewModel
 
@@ -32,23 +31,6 @@ import com.example.proyecto_falomir_herrero_miguel.ui.viewmodel.MainViewModel
 
 @Composable
 fun PantallaRealizarPedido(
-    onAcceptButton: () -> Unit,
-    onCancelButton: () -> Unit,
-    viewModel: MainViewModel,
-    modifier: Modifier = Modifier
-){
-    RealizarPedido(
-        onAcceptButton = onAcceptButton,
-        onCancelButton = onCancelButton,
-        viewModel = viewModel,
-        modifier = modifier
-    )
-}
-
-// METODO FORMULARIO PEDIDO -----------------------------------------
-
-@Composable
-fun RealizarPedido(
     onAcceptButton: () -> Unit,
     onCancelButton: () -> Unit,
     viewModel: MainViewModel,
@@ -64,15 +46,15 @@ fun RealizarPedido(
     var inputSize by remember { mutableStateOf("") }
     var inputGPS by remember { mutableStateOf(false) }
     /*
-    var precio: Double = calcularAlquiler(
+    var precio: Double = precioEnTienpoReal(
         tipo = inputTipo,
         fuel = inputFuel,
         size = inputSize,
-        hasGPS = inputGPS,
-        dias = inputDias.toInt()
+        GPS = inputGPS,
+        dias = inputDias
     )
      */
-    var precio: Double = 0.0
+    var precio :Double = 0.0
     // extructura general //
     Column (
         modifier = modifier.fillMaxWidth()
@@ -91,8 +73,7 @@ fun RealizarPedido(
                 w = 100, h = 40,
                 onClick = {
                     inputTipo = "0"
-                    viewModel.updateVehicleType(inputTipo)
-                    viewModel.updateRentPrice(precio.toString())
+                    viewModel.insertVehicleType(inputTipo)
                 },
                 texto = R.string.vehicle_type1
             )
@@ -100,8 +81,7 @@ fun RealizarPedido(
                 w = 100, h = 40,
                 onClick = {
                     inputTipo = "1"
-                    viewModel.updateVehicleType(inputTipo)
-                    viewModel.updateRentPrice(precio.toString())
+                    viewModel.insertVehicleType(inputTipo)
                 },
                 texto = R.string.vehicle_type2
             )
@@ -109,8 +89,7 @@ fun RealizarPedido(
                 w = 100, h = 40,
                 onClick = {
                     inputTipo = "2"
-                    viewModel.updateVehicleType(inputTipo)
-                    viewModel.updateRentPrice(precio.toString())
+                    viewModel.insertVehicleType(inputTipo)
                 },
                 texto = R.string.vehicle_type3
             )
@@ -120,8 +99,7 @@ fun RealizarPedido(
             value = inputMarca,
             onValueChange = {
                 inputMarca = it
-                viewModel.updateVehicleBrand(inputMarca)
-                viewModel.updateRentPrice(precio.toString())
+                viewModel.insertVehicleBrand(inputMarca)
             },
             texto = R.string.RealizarPedido_Brand,
             modifier = Modifier.padding(20.dp, 10.dp)
@@ -131,8 +109,7 @@ fun RealizarPedido(
             value = inputModelo,
             onValueChange = {
                 inputModelo = it
-                viewModel.updateVehicleModel(inputMarca)
-                viewModel.updateRentPrice(precio.toString())
+                viewModel.insertVehicleModel(inputModelo)
             },
             texto = R.string.RealizarPedido_Model,
             modifier = Modifier.padding(20.dp, 10.dp)
@@ -141,8 +118,7 @@ fun RealizarPedido(
         EntradaSwitch(
             value = inputGPS,
             onValueChange = {
-                viewModel.updateVehicleGPS(!inputGPS)
-                viewModel.updateRentPrice(precio.toString())
+                viewModel.insertVehicleGPS(!inputGPS)
                 inputGPS = !inputGPS
             },
             texto = R.string.ResumenPedido_HasGPS,
@@ -174,8 +150,7 @@ fun RealizarPedido(
                         w = 100, h = 40,
                         onClick = {
                             inputFuel = "0"
-                            viewModel.updateVehicleFuel(inputFuel)
-                            viewModel.updateRentPrice(precio.toString())
+                            viewModel.insertVehicleFuel(inputFuel)
                         },
                         texto = R.string.vehicle_fuel1
                     )
@@ -183,8 +158,7 @@ fun RealizarPedido(
                         w = 100, h = 40,
                         onClick = {
                             inputFuel = "1"
-                            viewModel.updateVehicleFuel(inputFuel)
-                            viewModel.updateRentPrice(precio.toString())
+                            viewModel.insertVehicleFuel(inputFuel)
                         },
                         texto = R.string.vehicle_fuel2
                     )
@@ -192,8 +166,7 @@ fun RealizarPedido(
                         w = 100, h = 40,
                         onClick = {
                             inputFuel = "2"
-                            viewModel.updateVehicleFuel(inputFuel)
-                            viewModel.updateRentPrice(precio.toString())
+                            viewModel.insertVehicleFuel(inputFuel)
                         },
                         texto = R.string.vehicle_fuel3
                     )
@@ -206,9 +179,8 @@ fun RealizarPedido(
                     Boton(
                         w = 100, h = 40,
                         onClick = {
-                            inputSize = "2"
-                            viewModel.updateVehicleSize(inputSize)
-                            viewModel.updateRentPrice(precio.toString())
+                            inputSize = "0"
+                            viewModel.insertVehicleSize(inputSize)
                         },
                         texto = R.string.vehicle_size1
                     )
@@ -216,17 +188,15 @@ fun RealizarPedido(
                         w = 100, h = 40,
                         onClick = {
                             inputSize = "1"
-                            viewModel.updateVehicleSize(inputSize)
-                            viewModel.updateRentPrice(precio.toString())
+                            viewModel.insertVehicleSize(inputSize)
                         },
                         texto = R.string.vehicle_size2
                     )
                     Boton(
                         w = 100, h = 40,
                         onClick = {
-                            inputSize = "0"
-                            viewModel.updateVehicleSize(inputSize)
-                            viewModel.updateRentPrice(precio.toString())
+                            inputSize = "2"
+                            viewModel.insertVehicleSize(inputSize)
                         },
                         texto = R.string.vehicle_size3
                     )
@@ -238,8 +208,7 @@ fun RealizarPedido(
             value = inputFecha,
             onValueChange = {
                 inputFecha = it
-                viewModel.updateRentDate(inputFecha)
-                viewModel.updateRentPrice(precio.toString())
+                viewModel.insertRentDate(inputFecha)
             },
             texto = R.string.ResumenPedido_Date,
             modifier = Modifier.padding(20.dp, 10.dp)
@@ -249,8 +218,7 @@ fun RealizarPedido(
             value = inputDias,
             onValueChange = {
                 inputDias = it
-                viewModel.updateRentDays(inputDias)
-                viewModel.updateRentPrice(precio.toString())
+                viewModel.insertRentDays(inputDias)
             },
             texto = R.string.ResumenPedido_RentDays,
             modifier = Modifier.padding(20.dp, 10.dp)
@@ -283,42 +251,38 @@ fun RealizarPedido(
 
 }
 
-// METODO CALCULAR ALQUILER -----------------------------------------
-
 @Composable
-fun calcularAlquiler(
+fun precioEnTienpoReal(
     tipo: String,
     fuel: String,
     size: String,
-    hasGPS: Boolean,
-    dias: Int
-): Double {
-    // variable interna //
-    var precio by remember { mutableStateOf(0.0) }
-    // definir precio diario //
-    when (tipo) {
-        "0" ->
-            precio = when (fuel) {
-                "0" -> 25.0
-                "1" -> 20.0
-                else -> 15.0
-            }
-        "1" ->
-            precio = when (size) {
-                "0" -> 20.0
-                "1" -> 15.0
-                else -> 10.0
-            }
-        else -> precio = 5.0
-    }
-    // sumar GPS //
-    if (hasGPS) { precio += 5.0 } else {}
-    // multiplicar por dias alquiler //
-    precio *= dias
-    // devolver precio //
-    return precio;
-}
+    GPS: Boolean,
+    dias: String
+) : Double {
+    var rentPrice: Double = 0.0
 
+    when (tipo) {
+        "0" -> rentPrice = when (fuel) {
+            "0" -> 25.0
+            "1" -> 20.0
+            "2" -> 15.0
+            else -> 0.0
+        }
+        "1" -> rentPrice = when (size) {
+            "0" -> 15.0
+            "1" -> 20.0
+            "2" -> 25.0
+            else -> 0.0
+        }
+        else -> rentPrice = 5.0
+    }
+
+    if(GPS){ rentPrice += 5.0 } else{}
+
+    rentPrice *= dias.toInt()
+
+    return rentPrice
+}
 // PREVIEW ----------------------------------------------------------
 
 @Preview(showBackground = true)

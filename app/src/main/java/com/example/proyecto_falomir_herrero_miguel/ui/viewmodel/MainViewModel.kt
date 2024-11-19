@@ -4,14 +4,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.proyecto_falomir_herrero_miguel.model.Paycard
-import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
-import com.example.proyecto_falomir_herrero_miguel.model.Vehicle
-import com.example.proyecto_falomir_herrero_miguel.model.Car
 import com.example.proyecto_falomir_herrero_miguel.model.Bike
+import com.example.proyecto_falomir_herrero_miguel.model.Car
+import com.example.proyecto_falomir_herrero_miguel.model.Paycard
 import com.example.proyecto_falomir_herrero_miguel.model.Rent
+import com.example.proyecto_falomir_herrero_miguel.model.RentUIState
 import com.example.proyecto_falomir_herrero_miguel.model.Scooter
-import com.example.proyecto_falomir_herrero_miguel.model.User
+import com.example.proyecto_falomir_herrero_miguel.model.Vehicle
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -49,9 +48,6 @@ class MainViewModel: ViewModel() {
     var uiRentDays by mutableStateOf("")
         private set
 
-    var uiRentPrice by mutableStateOf("")
-        private set
-
     var uiPaycardType by mutableStateOf("")
         private set
 
@@ -66,21 +62,38 @@ class MainViewModel: ViewModel() {
 
     // metodos //
 
-    fun updateVehicleType(input: String){
+    fun insertVehicleType(input: String){
         uiVehicleType = input
-
         /*
-        _RentUIState.update { estadoActual ->
-            estadoActual.copy(
-                // pendiente //
-            )
+        when (uiVehicleType) {
+            "0" -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Car()
+                    )
+                )
+            }
+            "1" -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Bike()
+                    )
+                )
+            }
+            else -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Scooter()
+                    )
+                )
+            }
         }
          */
     }
 
-    fun updateVehicleBrand(input: String){
+    fun insertVehicleBrand(input: String){
         uiVehicleBrand = input
-
+        /*
         when (uiVehicleType) {
             "0" -> _RentUIState.update { estadoActual ->
                 estadoActual.copy(
@@ -104,40 +117,41 @@ class MainViewModel: ViewModel() {
                 )
             }
         }
+         */
     }
 
-    fun updateVehicleModel(input: String){
+    fun insertVehicleModel(input: String){
         uiVehicleModel = input
-
+        /*
         when (uiVehicleType) {
-            "0" -> _RentUIState.update { estadoActual ->
-                    estadoActual.copy(
-                        alquiler = Rent(
-                            vehicle = Car(model = uiVehicleModel)
-                        )
+        "0" -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Car(model = uiVehicleModel)
                     )
-                }
-            "1" -> _RentUIState.update { estadoActual ->
-                    estadoActual.copy(
-                        alquiler = Rent(
-                            vehicle = Bike(model = uiVehicleModel)
-                        )
+                )
+            }
+        "1" -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Bike(model = uiVehicleModel)
                     )
-                }
-            else -> _RentUIState.update { estadoActual ->
-                    estadoActual.copy(
-                        alquiler = Rent(
-                            vehicle = Scooter(model = uiVehicleModel)
-                        )
+                )
+            }
+        else -> _RentUIState.update { estadoActual ->
+                estadoActual.copy(
+                    alquiler = Rent(
+                        vehicle = Scooter(model = uiVehicleModel)
                     )
-                }
+                )
+            }
         }
-
+         */
     }
 
-    fun updateVehicleGPS(input: Boolean){
+    fun insertVehicleGPS(input: Boolean){
         uiVehicleGPS= input
-
+        /*
         when (uiVehicleType) {
             "0" -> _RentUIState.update { estadoActual ->
                 estadoActual.copy(
@@ -161,11 +175,12 @@ class MainViewModel: ViewModel() {
                 )
             }
         }
+         */
     }
 
-    fun updateVehicleFuel(input: String){
+    fun insertVehicleFuel(input: String){
         uiVehicleFuel = input
-
+        /*
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 alquiler = Rent(
@@ -173,11 +188,12 @@ class MainViewModel: ViewModel() {
                 )
             )
         }
+         */
     }
 
-    fun updateVehicleSize(input: String){
+    fun insertVehicleSize(input: String){
         uiVehicleSize = input
-
+        /*
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 alquiler = Rent(
@@ -185,11 +201,12 @@ class MainViewModel: ViewModel() {
                 )
             )
         }
+         */
     }
 
-    fun updateRentDate(input: String){
+    fun insertRentDate(input: String){
         uiRentDate = input
-
+        /*
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 alquiler = Rent(
@@ -197,11 +214,12 @@ class MainViewModel: ViewModel() {
                 )
             )
         }
+         */
     }
 
-    fun updateRentDays(input: String){
+    fun insertRentDays(input: String){
         uiRentDays = input
-
+        /*
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 alquiler = Rent(
@@ -209,23 +227,12 @@ class MainViewModel: ViewModel() {
                 )
             )
         }
+         */
     }
 
-    fun updateRentPrice(input: String){
-        uiRentPrice = input
-
-        _RentUIState.update { estadoActual ->
-            estadoActual.copy(
-                alquiler = Rent(
-                    price = uiRentPrice.toDouble()
-                )
-            )
-        }
-    }
-
-    fun updatePaycardType(input: String){
+    fun insertPaycardType(input: String){
         uiPaycardType = input
-
+        /*
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 alquiler = Rent(
@@ -237,11 +244,12 @@ class MainViewModel: ViewModel() {
                 )
             )
         }
+         */
     }
 
-    fun updatePaycardNumber(input: String){
+    fun insertPaycardNumber(input: String){
         uiPaycardNumber = input
-
+        /*
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 alquiler = Rent(
@@ -253,11 +261,12 @@ class MainViewModel: ViewModel() {
                 )
             )
         }
+         */
     }
 
-    fun updatePaycardExpiration(input: String){
+    fun insertPaycardExpiration(input: String){
         uiPaycardExpiration = input
-
+        /*
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 alquiler = Rent(
@@ -269,11 +278,12 @@ class MainViewModel: ViewModel() {
                 )
             )
         }
+         */
     }
 
-    fun updatePaycardCode(input: String){
+    fun insertPaycardCode(input: String){
         uiPaycardCode = input
-
+        /*
         _RentUIState.update { estadoActual ->
             estadoActual.copy(
                 alquiler = Rent(
@@ -281,6 +291,75 @@ class MainViewModel: ViewModel() {
                         paycard = Paycard(
                             code = uiPaycardCode
                         )
+                    )
+                )
+            )
+        }
+         */
+    }
+
+    fun updatePrice() : Double{
+        var rentPrice: Double = 0.0
+
+        when (uiVehicleType) {
+            "0" -> rentPrice = when (uiVehicleFuel) {
+                "0" -> 25.0
+                "1" -> 20.0
+                "2" -> 15.0
+                else -> 0.0
+            }
+            "1" -> rentPrice = when (uiVehicleSize) {
+                "0" -> 15.0
+                "1" -> 20.0
+                "2" -> 25.0
+                else -> 0.0
+            }
+            else -> rentPrice = 5.0
+        }
+
+        if(uiVehicleGPS){ rentPrice += 5.0 } else{}
+
+        rentPrice *= uiRentDays.toInt()
+
+        return rentPrice
+    }
+
+    fun updateRent(){
+        _RentUIState.update { estadoActual ->
+            estadoActual.copy(
+                alquiler = Rent(
+                    vehicle = when (uiVehicleType) {
+                        "0" -> Car(
+                            brand = uiVehicleBrand,
+                            model = uiVehicleModel,
+                            hasGPS = uiVehicleGPS,
+                            fuel = uiVehicleFuel
+                        )
+                        "1" -> Bike(
+                            brand = uiVehicleBrand,
+                            model = uiVehicleModel,
+                            hasGPS = uiVehicleGPS,
+                            size = uiVehicleSize
+                        )
+                        "2" -> Scooter(
+                            brand = uiVehicleBrand,
+                            model = uiVehicleModel,
+                            hasGPS = uiVehicleGPS
+                        )
+                        else -> Vehicle(
+                            brand = uiVehicleBrand,
+                            model = uiVehicleModel,
+                            hasGPS = uiVehicleGPS
+                        )
+                    },
+                    date = uiRentDate,
+                    rentDays = uiRentDays.toInt(),
+                    price = updatePrice(),
+                    paycard = Paycard(
+                        type = uiPaycardType,
+                        date = uiPaycardExpiration,
+                        number = uiPaycardNumber,
+                        code = uiPaycardCode
                     )
                 )
             )

@@ -134,7 +134,9 @@ fun Navegador(
             composable(route = Pantallas.RealizarPedido.name) {
                 PantallaRealizarPedido(
                     onCancelButton = { navController.navigate(Pantallas.Inicio.name) },
-                    onAcceptButton = { navController.navigate(Pantallas.ResumenPedido.name) },
+                    onAcceptButton = {
+                        viewModel.updateRent()
+                        navController.navigate(Pantallas.ResumenPedido.name) },
                     viewModel = viewModel,
                     modifier = Modifier.fillMaxSize()
                 )
