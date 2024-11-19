@@ -25,7 +25,7 @@ class MainViewModel: ViewModel() {
 
     // variables //
 
-    var uiVehicleType by mutableStateOf("")
+    var uiVehicleType by mutableStateOf("0")
         private set
 
     var uiVehicleBrand by mutableStateOf("")
@@ -37,16 +37,19 @@ class MainViewModel: ViewModel() {
     var uiVehicleGPS by mutableStateOf(false)
         private set
 
-    var uiVehicleFuel by mutableStateOf("")
+    var uiVehicleFuel by mutableStateOf("0")
         private set
 
-    var uiVehicleSize by mutableStateOf("")
+    var uiVehicleSize by mutableStateOf("0")
         private set
 
     var uiRentDate by mutableStateOf("")
         private set
 
-    var uiRentDays by mutableStateOf("")
+    var uiRentDays by mutableStateOf("0")
+        private set
+
+    var uiRentPrice by mutableStateOf("0.0")
         private set
 
     var uiPaycardType by mutableStateOf("")
@@ -323,6 +326,10 @@ class MainViewModel: ViewModel() {
         rentPrice *= uiRentDays.toInt()
 
         return rentPrice
+    }
+
+    fun setPrice(){
+        uiRentPrice = updatePrice().toString()
     }
 
     fun updateRent(){

@@ -54,19 +54,23 @@ fun PantallaRealizarPedido(
         dias = inputDias
     )
      */
-    var precio :Double = 0.0
+    var precio by remember{ mutableStateOf(0.0) }
     // extructura general //
     Column (
         modifier = modifier.fillMaxWidth()
     ){
         // tipo vehiculo //
         Text(
-            modifier = Modifier.padding(20.dp, 20.dp, 20.dp, 0.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(20.dp, 20.dp, 20.dp, 0.dp)
+                .fillMaxWidth(),
             text = stringResource(R.string.ResumenPedido_Vehicle),
             fontFamily = One
         )
         Row (
-            modifier = Modifier.padding(20.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(20.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ){
             Boton(
@@ -74,6 +78,7 @@ fun PantallaRealizarPedido(
                 onClick = {
                     inputTipo = "0"
                     viewModel.insertVehicleType(inputTipo)
+                    viewModel.setPrice()
                 },
                 texto = R.string.vehicle_type1
             )
@@ -82,6 +87,7 @@ fun PantallaRealizarPedido(
                 onClick = {
                     inputTipo = "1"
                     viewModel.insertVehicleType(inputTipo)
+                    viewModel.setPrice()
                 },
                 texto = R.string.vehicle_type2
             )
@@ -90,6 +96,7 @@ fun PantallaRealizarPedido(
                 onClick = {
                     inputTipo = "2"
                     viewModel.insertVehicleType(inputTipo)
+                    viewModel.setPrice()
                 },
                 texto = R.string.vehicle_type3
             )
@@ -119,6 +126,7 @@ fun PantallaRealizarPedido(
             value = inputGPS,
             onValueChange = {
                 viewModel.insertVehicleGPS(!inputGPS)
+                viewModel.setPrice()
                 inputGPS = !inputGPS
             },
             texto = R.string.ResumenPedido_HasGPS,
@@ -143,7 +151,9 @@ fun PantallaRealizarPedido(
         when (viewModel.uiVehicleType) {
             "0" ->
                 Row (
-                    modifier = Modifier.padding(20.dp, 10.dp).fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(20.dp, 10.dp)
+                        .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Boton(
@@ -151,6 +161,7 @@ fun PantallaRealizarPedido(
                         onClick = {
                             inputFuel = "0"
                             viewModel.insertVehicleFuel(inputFuel)
+                            viewModel.setPrice()
                         },
                         texto = R.string.vehicle_fuel1
                     )
@@ -159,6 +170,7 @@ fun PantallaRealizarPedido(
                         onClick = {
                             inputFuel = "1"
                             viewModel.insertVehicleFuel(inputFuel)
+                            viewModel.setPrice()
                         },
                         texto = R.string.vehicle_fuel2
                     )
@@ -167,13 +179,16 @@ fun PantallaRealizarPedido(
                         onClick = {
                             inputFuel = "2"
                             viewModel.insertVehicleFuel(inputFuel)
+                            viewModel.setPrice()
                         },
                         texto = R.string.vehicle_fuel3
                     )
                 }
             "1" ->
                 Row (
-                    modifier = Modifier.padding(20.dp, 10.dp).fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(20.dp, 10.dp)
+                        .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Boton(
@@ -181,6 +196,7 @@ fun PantallaRealizarPedido(
                         onClick = {
                             inputSize = "0"
                             viewModel.insertVehicleSize(inputSize)
+                            viewModel.setPrice()
                         },
                         texto = R.string.vehicle_size1
                     )
@@ -189,6 +205,7 @@ fun PantallaRealizarPedido(
                         onClick = {
                             inputSize = "1"
                             viewModel.insertVehicleSize(inputSize)
+                            viewModel.setPrice()
                         },
                         texto = R.string.vehicle_size2
                     )
@@ -197,6 +214,7 @@ fun PantallaRealizarPedido(
                         onClick = {
                             inputSize = "2"
                             viewModel.insertVehicleSize(inputSize)
+                            viewModel.setPrice()
                         },
                         texto = R.string.vehicle_size3
                     )
@@ -219,6 +237,7 @@ fun PantallaRealizarPedido(
             onValueChange = {
                 inputDias = it
                 viewModel.insertRentDays(inputDias)
+                viewModel.setPrice()
             },
             texto = R.string.ResumenPedido_RentDays,
             modifier = Modifier.padding(20.dp, 10.dp)
@@ -226,14 +245,16 @@ fun PantallaRealizarPedido(
         // precio total //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPedido_Total),
-            dato = "$precio " + stringResource(R.string.ResumenPedido_Coin),
+            dato = "${viewModel.uiRentPrice} " + stringResource(R.string.ResumenPedido_Coin),
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //
         Spacer(modifier = Modifier.weight(1F))
         // botones //
         Row (
-            modifier = Modifier.padding(20.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(20.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ){
             Boton(
@@ -251,7 +272,8 @@ fun PantallaRealizarPedido(
 
 }
 
-@Composable
+// METODO CALCULAR PRECIO EN TIEMPO REAL ----------------------------
+
 fun precioEnTienpoReal(
     tipo: String,
     fuel: String,
@@ -283,6 +305,7 @@ fun precioEnTienpoReal(
 
     return rentPrice
 }
+
 // PREVIEW ----------------------------------------------------------
 
 @Preview(showBackground = true)
