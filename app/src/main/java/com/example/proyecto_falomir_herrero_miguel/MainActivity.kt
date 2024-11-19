@@ -152,7 +152,10 @@ fun Navegador(
             composable(route = Pantallas.FormularioPago.name) {
                 PantallaFormularioPago(
                     onCancelButton = { navController.navigate(Pantallas.ResumenPedido.name) },
-                    onPayButton = { navController.navigate(Pantallas.ResumenPago.name) },
+                    onPayButton = {
+                        viewModel.updateRent()
+                        navController.navigate(Pantallas.ResumenPago.name)
+                    },
                     viewModel = viewModel,
                     modifier = Modifier.fillMaxSize()
                 )

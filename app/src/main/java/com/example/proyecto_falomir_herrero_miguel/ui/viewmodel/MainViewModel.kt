@@ -1,5 +1,6 @@
 package com.example.proyecto_falomir_herrero_miguel.ui.viewmodel
 
+import android.provider.ContactsContract.Data
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -360,7 +361,8 @@ class MainViewModel: ViewModel() {
                         date = uiPaycardExpiration,
                         number = uiPaycardNumber,
                         code = uiPaycardCode
-                    )
+                    ),
+                    user = com.example.proyecto_falomir_herrero_miguel.data.Data().UserDemo()
                 )
             )
         }

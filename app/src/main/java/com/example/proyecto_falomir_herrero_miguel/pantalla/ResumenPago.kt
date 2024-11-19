@@ -36,7 +36,7 @@ fun PantallaResumenPago(
     ResumenPago(
         onCancelButton,
         onAcceptButton,
-        rentState = RentUIState(),
+        rentState = rentState,
         modifier = modifier
     )
 }
@@ -50,8 +50,6 @@ fun ResumenPago(
     rentState: RentUIState,
     modifier: Modifier = Modifier
 ){
-    // variables internas //
-    val rent: Rent = Data().RentList()[0]
     // estructura general //
     Column (
         modifier = modifier.fillMaxWidth()
@@ -59,13 +57,13 @@ fun ResumenPago(
         // Ingreso //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Income),
-            dato = rent.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
+            dato = rentState.alquiler.price.toString() + " " + stringResource(R.string.ResumenPedido_Coin),
             modifier = Modifier.padding(20.dp)
         )
         // fecha //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Date),
-            dato = rent.date,
+            dato = rentState.alquiler.date,
             modifier = Modifier.padding(20.dp)
         )
         // Concepto //
@@ -83,14 +81,14 @@ fun ResumenPago(
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Card),
             // dato = rentState.alquiler.user.paycard.number,
-            dato = "",
+            dato = rentState.alquiler.paycard.number,
             modifier = Modifier.padding(20.dp)
         )
         // Correo //
         FilaSalidaDato(
             texto = stringResource(R.string.ResumenPago_Email),
             // dato = rentState.alquiler.user.email,
-            dato = "",
+            dato = rentState.alquiler.user.email,
             modifier = Modifier.padding(20.dp)
         )
         // espaciar //
